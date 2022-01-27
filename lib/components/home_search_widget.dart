@@ -136,27 +136,6 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
                 ),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPageWidget(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.shopping_bag_outlined,
-                    color: FlutterFlowTheme.primaryColor,
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
