@@ -4,6 +4,7 @@ import '../components/home_search_widget.dart';
 import '../components/search1_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -109,24 +110,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                        image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: Image.asset(
-                                            'assets/images/upper.png',
-                                          ).image,
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'search'),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFEEEEEE),
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: Image.asset(
+                                              'assets/images/upper.png',
+                                            ).image,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 5,
+                                              color: Color(0xFFAEE1E1),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 5,
-                                            color: Color(0xFFAEE1E1),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
                                     Padding(
@@ -148,24 +161,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                        image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: Image.asset(
-                                            'assets/images/lowerware.png',
-                                          ).image,
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'search'),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFEEEEEE),
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: Image.asset(
+                                              'assets/images/lowerware.png',
+                                            ).image,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 5,
+                                              color: Color(0xFFAEE1E1),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 5,
-                                            color: Color(0xFFAEE1E1),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
                                     Padding(
@@ -187,24 +212,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.asset(
-                                            'assets/images/Footware.png',
-                                          ).image,
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'search'),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFEEEEEE),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              'assets/images/Footware.png',
+                                            ).image,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 5,
+                                              color: Color(0xFFAEE1E1),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 5,
-                                            color: Color(0xFFAEE1E1),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
                                     Padding(
@@ -226,24 +263,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.asset(
-                                            'assets/images/Accesory.png',
-                                          ).image,
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'search'),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFEEEEEE),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              'assets/images/Accesory.png',
+                                            ).image,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 5,
+                                              color: Color(0xFFAEE1E1),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 5,
-                                            color: Color(0xFFAEE1E1),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
                                     Padding(

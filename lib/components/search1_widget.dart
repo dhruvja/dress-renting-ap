@@ -1,5 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,25 +29,35 @@ class _Search1WidgetState extends State<Search1Widget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 150,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.tertiaryColor,
-                      image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: Image.asset(
-                          'assets/images/myntra.jpg',
-                        ).image,
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPageWidget(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 150,
+                      height: 160,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        image: DecorationImage(
+                          fit: BoxFit.fitHeight,
+                          image: Image.asset(
+                            'assets/images/myntra.jpg',
+                          ).image,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 3,
+                            color: Color(0xFFD3E0DC),
+                          )
+                        ],
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 3,
-                          color: Color(0xFFD3E0DC),
-                        )
-                      ],
+                      alignment: AlignmentDirectional(0, 0),
                     ),
-                    alignment: AlignmentDirectional(0, 0),
                   ),
                 ],
               ),
@@ -54,13 +65,23 @@ class _Search1WidgetState extends State<Search1Widget> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Product name',
-                    style: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      color: FlutterFlowTheme.primaryColor,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPageWidget(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Product name',
+                      style: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.primaryColor,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
