@@ -5,7 +5,7 @@ import 'package:ecommerce/home_page/home_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page/home_page_widget.dart';
-import 'search/search_widget.dart';
+import 'searchu/searchu_widget.dart';
 import 'cart/cart_widget.dart';
 
 void main() async {
@@ -77,7 +77,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'search': SearchWidget(),
+      'searchu': SearchuWidget(),
       'cart': CartWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);

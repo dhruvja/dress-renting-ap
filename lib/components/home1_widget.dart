@@ -21,7 +21,7 @@ class _Home1WidgetState extends State<Home1Widget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NavBarPage(initialPage: 'search'),
+              builder: (context) => NavBarPage(initialPage: 'searchu'),
             ),
           );
         },

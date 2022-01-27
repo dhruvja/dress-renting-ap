@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,8 +34,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
             color: Color(0xFF95A1AC),
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -50,43 +51,100 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF262D34),
+      backgroundColor: Color(0xFF6C6B6B),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.94,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 6,
-                          color: Color(0x3E000000),
-                          offset: Offset(0, 2),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/myntra2.jpg',
-                        width: MediaQuery.of(context).size.width * 0.96,
-                        height: 40,
-                        fit: BoxFit.cover,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.94,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 6,
+                            color: Color(0x3E000000),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/myntra2.jpg',
+                          width: MediaQuery.of(context).size.width * 0.96,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.94,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 6,
+                            color: Color(0x3E000000),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/myntra.jpg',
+                          width: MediaQuery.of(context).size.width * 0.96,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.94,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 6,
+                            color: Color(0x3E000000),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/upper.png',
+                          width: MediaQuery.of(context).size.width * 0.96,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
@@ -95,7 +153,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Product Name',
+                      'Press man Bundle',
                       style: FlutterFlowTheme.title3.override(
                         fontFamily: 'Lexend Deca',
                         color: Colors.white,
@@ -172,6 +230,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
+                    hintText: 'Size',
                     icon: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: Color(0xFF95A1AC),
@@ -186,14 +245,29 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     hidesUnderline: true,
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'The Bundle is prdered',
+                            style: TextStyle(),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor: Color(0x00000000),
+                        ),
+                      );
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBarPage(initialPage: 'cart'),
+                        ),
+                      );
                     },
                     text: 'Buy Now',
                     options: FFButtonOptions(
                       width: 170,
                       height: 50,
-                      color: Color(0xFF39D2C0),
+                      color: FlutterFlowTheme.primaryColor,
                       textStyle: FlutterFlowTheme.subtitle2.override(
                         fontFamily: 'Lexend Deca',
                         color: Colors.white,

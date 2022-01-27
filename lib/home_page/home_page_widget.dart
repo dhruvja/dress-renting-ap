@@ -1,10 +1,10 @@
-import '../components/home1_widget.dart';
 import '../components/home2_widget.dart';
 import '../components/home_search_widget.dart';
 import '../components/search1_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../search_f/search_f_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -36,29 +36,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'current trends',
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Home1Widget(),
-                            Home1Widget(),
-                            Home1Widget(),
-                          ],
-                        ),
-                      ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -98,7 +75,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width * 0.95,
-                            height: 120,
+                            height: 360,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.tertiaryColor,
                             ),
@@ -116,13 +93,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => NavBarPage(
-                                                initialPage: 'search'),
+                                                initialPage: 'searchu'),
                                           ),
                                         );
                                       },
                                       child: Container(
-                                        width: 80,
-                                        height: 80,
+                                        width: 150,
+                                        height: 150,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFEEEEEE),
                                           image: DecorationImage(
@@ -155,76 +132,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
                                     InkWell(
                                       onTap: () async {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'search'),
+                                            builder: (context) =>
+                                                SearchFWidget(),
                                           ),
                                         );
                                       },
                                       child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFEEEEEE),
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: Image.asset(
-                                              'assets/images/lowerware.png',
-                                            ).image,
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 5,
-                                              color: Color(0xFFAEE1E1),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 3, 0, 0),
-                                      child: Text(
-                                        'Lower Wear',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'search'),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
+                                        width: 150,
+                                        height: 150,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFEEEEEE),
                                           image: DecorationImage(
@@ -269,13 +189,58 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => NavBarPage(
-                                                initialPage: 'search'),
+                                                initialPage: 'searchu'),
                                           ),
                                         );
                                       },
                                       child: Container(
-                                        width: 80,
-                                        height: 80,
+                                        width: 150,
+                                        height: 150,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFEEEEEE),
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: Image.asset(
+                                              'assets/images/lowerware.png',
+                                            ).image,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 5,
+                                              color: Color(0xFFAEE1E1),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 3, 0, 0),
+                                      child: Text(
+                                        'Lower Wear',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 8,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                SearchFWidget(),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 150,
+                                        height: 150,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFEEEEEE),
                                           image: DecorationImage(

@@ -1,17 +1,17 @@
-import '../components/search1_widget.dart';
+import '../components/search1_co_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SearchWidget extends StatefulWidget {
-  const SearchWidget({Key key}) : super(key: key);
+class SearchFWidget extends StatefulWidget {
+  const SearchFWidget({Key key}) : super(key: key);
 
   @override
-  _SearchWidgetState createState() => _SearchWidgetState();
+  _SearchFWidgetState createState() => _SearchFWidgetState();
 }
 
-class _SearchWidgetState extends State<SearchWidget> {
+class _SearchFWidgetState extends State<SearchFWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -170,7 +170,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 1,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.tertiaryColor,
@@ -182,12 +182,17 @@ class _SearchWidgetState extends State<SearchWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  'Upper Wear',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10, 10, 10, 10),
+                                  child: Text(
+                                    'Foot Wear',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.primaryColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -196,10 +201,43 @@ class _SearchWidgetState extends State<SearchWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Search1Widget(),
+                                  child: Search1CoWidget(),
                                 ),
                                 Expanded(
-                                  child: Search1Widget(),
+                                  child: Search1CoWidget(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Search1CoWidget(),
+                                ),
+                                Expanded(
+                                  child: Search1CoWidget(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Search1CoWidget(),
+                                ),
+                                Expanded(
+                                  child: Search1CoWidget(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Search1CoWidget(),
+                                ),
+                                Expanded(
+                                  child: Search1CoWidget(),
                                 ),
                               ],
                             ),

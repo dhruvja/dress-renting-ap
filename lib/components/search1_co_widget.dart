@@ -1,17 +1,17 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../shop/shop_widget.dart';
+import '../shop_f/shop_f_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Search1Widget extends StatefulWidget {
-  const Search1Widget({Key key}) : super(key: key);
+class Search1CoWidget extends StatefulWidget {
+  const Search1CoWidget({Key key}) : super(key: key);
 
   @override
-  _Search1WidgetState createState() => _Search1WidgetState();
+  _Search1CoWidgetState createState() => _Search1CoWidgetState();
 }
 
-class _Search1WidgetState extends State<Search1Widget> {
+class _Search1CoWidgetState extends State<Search1CoWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +34,7 @@ class _Search1WidgetState extends State<Search1Widget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShopWidget(),
+                          builder: (context) => ShopFWidget(),
                         ),
                       );
                     },
@@ -46,7 +46,7 @@ class _Search1WidgetState extends State<Search1Widget> {
                         image: DecorationImage(
                           fit: BoxFit.fitHeight,
                           image: Image.asset(
-                            'assets/images/myntra.jpg',
+                            'assets/images/Footware.png',
                           ).image,
                         ),
                         boxShadow: [
@@ -70,12 +70,12 @@ class _Search1WidgetState extends State<Search1Widget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShopWidget(),
+                          builder: (context) => ShopFWidget(),
                         ),
                       );
                     },
                     child: Text(
-                      'Pressman Top',
+                      'Pressman Foot',
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Poppins',
                         color: FlutterFlowTheme.primaryColor,
@@ -99,7 +99,7 @@ class _Search1WidgetState extends State<Search1Widget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '300 Rs',
+                    '100 Rs',
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       color: Color(0xFFDA1111),
