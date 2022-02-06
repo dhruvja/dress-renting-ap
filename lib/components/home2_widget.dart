@@ -1,6 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
+import '../searchu/searchu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +21,7 @@ class _Home2WidgetState extends State<Home2Widget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NavBarPage(initialPage: 'searchu'),
+              builder: (context) => SearchuWidget(),
             ),
           );
         },

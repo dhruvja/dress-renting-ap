@@ -171,7 +171,7 @@ class _SearchAWidgetState extends State<SearchAWidget> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 1,
+                      height: 800,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.tertiaryColor,
                       ),

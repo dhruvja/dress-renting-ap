@@ -88,15 +88,10 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                                   color: Color(0xFFDBE2E7),
                                 ),
                               ),
-                              child: InkWell(
-                                onTap: () async {
-                                  Navigator.pop(context);
-                                },
-                                child: Icon(
-                                  Icons.arrow_back_rounded,
-                                  color: Color(0xFF090F13),
-                                  size: 24,
-                                ),
+                              child: Icon(
+                                Icons.phone_rounded,
+                                color: Color(0xFF090F13),
+                                size: 24,
                               ),
                             ),
                           ),
@@ -177,16 +172,6 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'OTP sent',
-                                    style: TextStyle(),
-                                  ),
-                                  duration: Duration(milliseconds: 4000),
-                                  backgroundColor: Color(0x00000000),
-                                ),
-                              );
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(

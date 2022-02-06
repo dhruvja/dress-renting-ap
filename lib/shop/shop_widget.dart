@@ -627,6 +627,8 @@ class _ShopWidgetState extends State<ShopWidget> {
                                     NavBarPage(initialPage: 'HomePage'),
                               ),
                             );
+                            setState(() =>
+                                FFAppState().count = FFAppState().count + 1);
                           },
                           text: 'Add to Bundle',
                           options: FFButtonOptions(

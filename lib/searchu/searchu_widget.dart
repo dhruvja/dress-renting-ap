@@ -180,7 +180,7 @@ class _SearchuWidgetState extends State<SearchuWidget> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 1,
+                      height: 900,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.tertiaryColor,
                       ),

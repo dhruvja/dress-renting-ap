@@ -3,8 +3,10 @@ import '../components/home_search_widget.dart';
 import '../components/search1_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
+import '../search_a/search_a_widget.dart';
 import '../search_f/search_f_widget.dart';
+import '../search_l/search_l_widget.dart';
+import '../searchu/searchu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -92,8 +94,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'searchu'),
+                                            builder: (context) =>
+                                                SearchuWidget(),
                                           ),
                                         );
                                       },
@@ -188,8 +190,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'searchu'),
+                                            builder: (context) =>
+                                                SearchLWidget(),
                                           ),
                                         );
                                       },
@@ -234,7 +236,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchFWidget(),
+                                                SearchAWidget(),
                                           ),
                                         );
                                       },

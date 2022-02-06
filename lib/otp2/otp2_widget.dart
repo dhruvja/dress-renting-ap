@@ -177,12 +177,13 @@ class _Otp2WidgetState extends State<Otp2Widget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       NavBarPage(initialPage: 'HomePage'),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Sign In',
