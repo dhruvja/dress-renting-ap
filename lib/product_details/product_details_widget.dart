@@ -1,3 +1,4 @@
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -6,15 +7,16 @@ import '../main.dart';
 import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
-class ShopFWidget extends StatefulWidget {
-  const ShopFWidget({Key key}) : super(key: key);
+class ProductDetailsWidget extends StatefulWidget {
+  const ProductDetailsWidget({Key key}) : super(key: key);
 
   @override
-  _ShopFWidgetState createState() => _ShopFWidgetState();
+  _ProductDetailsWidgetState createState() => _ProductDetailsWidgetState();
 }
 
-class _ShopFWidgetState extends State<ShopFWidget> {
+class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,12 +38,12 @@ class _ShopFWidgetState extends State<ShopFWidget> {
         ),
         title: Text(
           ' ',
-          style: FlutterFlowTheme.subtitle2.override(
-            fontFamily: 'Lexend Deca',
-            color: Color(0xFF151B1E),
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          style: FlutterFlowTheme.of(context).subtitle2.override(
+                fontFamily: 'Lexend Deca',
+                color: Color(0xFF151B1E),
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
         ),
         actions: [
           Padding(
@@ -81,16 +83,42 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Image.asset(
-                          'assets/images/Footware.png',
-                          width: MediaQuery.of(context).size.width,
-                          height: 350,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: FlutterFlowExpandedImageView(
+                                    image: Image.asset(
+                                      'assets/images/upper.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                    allowRotation: false,
+                                    tag: 'productImageTag',
+                                    useHeroAnimation: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Hero(
+                              tag: 'productImageTag',
+                              transitionOnUserGestures: true,
+                              child: Image.asset(
+                                'assets/images/upper.png',
+                                width: MediaQuery.of(context).size.width,
+                                height: 350,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
@@ -98,24 +126,26 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Pressman Foot',
-                            style: FlutterFlowTheme.title1.override(
-                              fontFamily: 'Playfair Display',
-                              color: Color(0xFF090F13),
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            'Pressman Shirt',
+                            style: FlutterFlowTheme.of(context).title1.override(
+                                  fontFamily: 'Playfair Display',
+                                  color: Color(0xFF090F13),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                ),
                           ),
                           Expanded(
                             child: Text(
-                              'Rs.100',
+                              'Rs.350',
                               textAlign: TextAlign.end,
-                              style: FlutterFlowTheme.subtitle1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFF4B39EF),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle1
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF4B39EF),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ),
                         ],
@@ -129,11 +159,12 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                         children: [
                           Text(
                             'Per day',
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
                         ],
                       ),
@@ -149,12 +180,14 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                               child: Text(
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF8B97A2),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF8B97A2),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ),
@@ -174,7 +207,7 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                       width: MediaQuery.of(context).size.width * 0.95,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -187,7 +220,8 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 5,
@@ -211,12 +245,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '7',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        'XS',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -231,7 +266,8 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 5,
@@ -249,12 +285,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '8',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        'M',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -269,7 +306,8 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 5,
@@ -293,12 +331,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '9',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        'XL',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -313,7 +352,8 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 5,
@@ -337,12 +377,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '10',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        'XXL',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -357,7 +398,8 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 5,
@@ -381,12 +423,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '11',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        'XXL',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -410,7 +453,7 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                       width: MediaQuery.of(context).size.width * 0.95,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -420,158 +463,161 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0xFFD3E0DC),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Color(0xFFAEE1E1),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Color(0xFFD3E0DC),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Color(0xFFAEE1E1),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'U',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'U',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
                             ],
-                          ),
-                          Container(
-                            width: 50,
-                            height: 5,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF6A9106),
-                            ),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0xFFAEE1E1),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'L',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w600,
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Color(0xFFAEE1E1),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'L',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
-                          ),
-                          Container(
-                            width: 50,
-                            height: 5,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF6A9106),
-                            ),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0xFFAEE1E1),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'F',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w600,
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Color(0xFFAEE1E1),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'F',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
-                          ),
-                          Container(
-                            width: 50,
-                            height: 5,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF6A9106),
-                            ),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0xFFAEE1E1),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'A',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w600,
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Color(0xFFAEE1E1),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'A',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -633,12 +679,13 @@ class _ShopFWidgetState extends State<ShopFWidget> {
                           text: 'Add to Bundle',
                           options: FFButtonOptions(
                             color: Color(0xFF4B39EF),
-                            textStyle: FlutterFlowTheme.subtitle2.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                             borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1,

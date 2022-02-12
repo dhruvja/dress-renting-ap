@@ -60,12 +60,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         children: [
                           Text(
                             'Manner me',
-                            style: FlutterFlowTheme.subtitle1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF090F13),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle1.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
                           Expanded(
                             child: Padding(
@@ -74,12 +75,14 @@ class _LikedWidgetState extends State<LikedWidget> {
                               child: AutoSizeText(
                                 'A dance peek at joh tweek\nexplore the charm',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF57636C),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF57636C),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ),
@@ -105,12 +108,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         child: Text(
                           'Available',
                           textAlign: TextAlign.end,
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Color(0xFF4B39EF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF4B39EF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ),
                     ],
@@ -163,12 +167,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         children: [
                           Text(
                             'Pushman foot',
-                            style: FlutterFlowTheme.subtitle1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF090F13),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle1.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
                           Expanded(
                             child: Padding(
@@ -177,12 +182,14 @@ class _LikedWidgetState extends State<LikedWidget> {
                               child: AutoSizeText(
                                 'A dance peek at joh tweek\nexplore the charm',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF57636C),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF57636C),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ),
@@ -208,12 +215,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         child: Text(
                           'Out of stock',
                           textAlign: TextAlign.end,
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Color(0xFF4B39EF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF4B39EF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ),
                     ],
@@ -266,12 +274,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         children: [
                           Text(
                             'Morning mantra',
-                            style: FlutterFlowTheme.subtitle1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF090F13),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle1.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
                           Expanded(
                             child: Padding(
@@ -280,12 +289,14 @@ class _LikedWidgetState extends State<LikedWidget> {
                               child: AutoSizeText(
                                 'A dance peek at joh tweek\nexplore the charm',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF57636C),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF57636C),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ),
@@ -311,12 +322,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                         child: Text(
                           'Available',
                           textAlign: TextAlign.end,
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Color(0xFF4B39EF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF4B39EF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ),
                     ],

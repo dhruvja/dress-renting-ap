@@ -20,7 +20,7 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
       width: MediaQuery.of(context).size.width,
       height: 50,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.tertiaryColor,
+        color: FlutterFlowTheme.of(context).tertiaryColor,
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
@@ -61,7 +61,7 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
                       width: 100,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           image: Image.asset(

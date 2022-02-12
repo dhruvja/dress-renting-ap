@@ -24,7 +24,7 @@ class _LandWidgetState extends State<LandWidget> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.tertiaryColor,
+            color: FlutterFlowTheme.of(context).tertiaryColor,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -105,11 +105,12 @@ class _LandWidgetState extends State<LandWidget> {
                       options: FFButtonOptions(
                         width: 130,
                         height: 40,
-                        color: FlutterFlowTheme.primaryColor,
-                        textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                        ),
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

@@ -1,17 +1,17 @@
-import '../components/search1_c_widget.dart';
+import '../components/search_component_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SearchLWidget extends StatefulWidget {
-  const SearchLWidget({Key key}) : super(key: key);
+class SearchWidget extends StatefulWidget {
+  const SearchWidget({Key key}) : super(key: key);
 
   @override
-  _SearchLWidgetState createState() => _SearchLWidgetState();
+  _SearchWidgetState createState() => _SearchWidgetState();
 }
 
-class _SearchLWidgetState extends State<SearchLWidget> {
+class _SearchWidgetState extends State<SearchWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -99,24 +99,28 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                                             decoration: InputDecoration(
                                               labelText:
                                                   'Search for friends...',
-                                              labelStyle: FlutterFlowTheme
+                                              labelStyle: FlutterFlowTheme.of(
+                                                      context)
                                                   .bodyText1
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF82878C),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF82878C),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
                                               hintText:
                                                   'Find your friend by na',
-                                              hintStyle: FlutterFlowTheme
+                                              hintStyle: FlutterFlowTheme.of(
+                                                      context)
                                                   .bodyText1
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF95A1AC),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF95A1AC),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
@@ -144,13 +148,14 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                                                 ),
                                               ),
                                             ),
-                                            style: FlutterFlowTheme.bodyText1
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF151B1E),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF151B1E),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
                                             textAlign: TextAlign.start,
                                           ),
                                         ),
@@ -180,9 +185,9 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 800,
+                      height: 900,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
@@ -195,13 +200,16 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 10, 10, 10),
                                   child: Text(
-                                    'Lower Wear',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.primaryColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    'Upper Wear',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                   ),
                                 ),
                               ],
@@ -210,21 +218,10 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
                                 ),
                                 Expanded(
-                                  child: Search1CWidget(),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Search1CWidget(),
-                                ),
-                                Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
                                 ),
                               ],
                             ),
@@ -232,10 +229,10 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
                                 ),
                                 Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
                                 ),
                               ],
                             ),
@@ -243,10 +240,21 @@ class _SearchLWidgetState extends State<SearchLWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
                                 ),
                                 Expanded(
-                                  child: Search1CWidget(),
+                                  child: SearchComponentWidget(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: SearchComponentWidget(),
+                                ),
+                                Expanded(
+                                  child: SearchComponentWidget(),
                                 ),
                               ],
                             ),

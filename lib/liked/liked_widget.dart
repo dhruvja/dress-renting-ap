@@ -19,7 +19,7 @@ class _LikedWidgetState extends State<LikedWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: true,
         actions: [],
         centerTitle: true,
@@ -39,7 +39,7 @@ class _LikedWidgetState extends State<LikedWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(5, 3, 0, 0),
                     child: Text(
                       'Liked',
-                      style: FlutterFlowTheme.bodyText1,
+                      style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ),
                 ],

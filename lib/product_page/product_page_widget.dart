@@ -23,7 +23,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -40,12 +40,12 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         ),
         title: Text(
           'Back to Products',
-          style: FlutterFlowTheme.bodyText2.override(
-            fontFamily: 'Lexend Deca',
-            color: Color(0xFF8B97A2),
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-          ),
+          style: FlutterFlowTheme.of(context).bodyText2.override(
+                fontFamily: 'Lexend Deca',
+                color: Color(0xFF8B97A2),
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
         ),
         actions: [],
         centerTitle: false,
@@ -154,12 +154,12 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                   Expanded(
                     child: Text(
                       'Press man Bundle',
-                      style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: FlutterFlowTheme.of(context).title3.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ),
                 ],
@@ -173,22 +173,22 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                 children: [
                   Text(
                     'Multi-Color Jacket',
-                    style: FlutterFlowTheme.bodyText2.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF8B97A2),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: FlutterFlowTheme.of(context).bodyText2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Color(0xFF8B97A2),
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
                   ),
                   Text(
                     '\$125.00',
                     textAlign: TextAlign.end,
-                    style: FlutterFlowTheme.title3.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF39D2C0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Color(0xFF39D2C0),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),
@@ -202,12 +202,12 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                   Expanded(
                     child: Text(
                       'Sporty style from the archives inspires this iconic track top. A stand-up collar and the signature sheen of tricot give it a retro vibe. Made for relaxing between sessions, the full-zip jacket has a recycled polyester build.',
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
                     ),
                   ),
                 ],
@@ -224,12 +224,12 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     onChanged: (val) => setState(() => dropDownValue = val),
                     width: 120,
                     height: 50,
-                    textStyle: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    textStyle: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
                     hintText: 'Size',
                     icon: Icon(
                       Icons.keyboard_arrow_down_rounded,
@@ -267,13 +267,14 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     options: FFButtonOptions(
                       width: 170,
                       height: 50,
-                      color: FlutterFlowTheme.primaryColor,
-                      textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                       elevation: 3,
                       borderSide: BorderSide(
                         color: Colors.transparent,

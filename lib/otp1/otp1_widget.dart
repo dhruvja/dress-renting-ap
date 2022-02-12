@@ -98,12 +98,13 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                           Expanded(
                             child: Text(
                               'Phone Sign In',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFF090F13),
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF090F13),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                             ),
                           ),
                         ],
@@ -121,19 +122,23 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Your Phone Number...',
-                                labelStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF95A1AC),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF95A1AC),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                                 hintText: '+1 (204) 204-2056',
-                                hintStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF95A1AC),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF95A1AC),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xFFDBE2E7),
@@ -153,12 +158,14 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16, 24, 0, 24),
                               ),
-                              style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFF2B343A),
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF2B343A),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                             ),
                           ),
                         ],
@@ -184,12 +191,14 @@ class _Otp1WidgetState extends State<Otp1Widget> {
                               width: 130,
                               height: 50,
                               color: Color(0xFF4B39EF),
-                              textStyle: FlutterFlowTheme.subtitle2.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                               elevation: 3,
                               borderSide: BorderSide(
                                 color: Colors.transparent,

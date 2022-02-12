@@ -1,17 +1,17 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../shop_a/shop_a_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Search1CopWidget extends StatefulWidget {
-  const Search1CopWidget({Key key}) : super(key: key);
+class SearchComponentWidget extends StatefulWidget {
+  const SearchComponentWidget({Key key}) : super(key: key);
 
   @override
-  _Search1CopWidgetState createState() => _Search1CopWidgetState();
+  _SearchComponentWidgetState createState() => _SearchComponentWidgetState();
 }
 
-class _Search1CopWidgetState extends State<Search1CopWidget> {
+class _SearchComponentWidgetState extends State<SearchComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +34,7 @@ class _Search1CopWidgetState extends State<Search1CopWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShopAWidget(),
+                          builder: (context) => NavBarPage(initialPage: 'cart'),
                         ),
                       );
                     },
@@ -42,11 +42,11 @@ class _Search1CopWidgetState extends State<Search1CopWidget> {
                       width: 150,
                       height: 160,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                         image: DecorationImage(
                           fit: BoxFit.fitHeight,
                           image: Image.asset(
-                            'assets/images/Accesory.png',
+                            'assets/images/myntra.jpg',
                           ).image,
                         ),
                         boxShadow: [
@@ -70,42 +70,42 @@ class _Search1CopWidgetState extends State<Search1CopWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShopAWidget(),
+                          builder: (context) => NavBarPage(initialPage: 'cart'),
                         ),
                       );
                     },
                     child: Text(
-                      'Pressman ',
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: FlutterFlowTheme.primaryColor,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      'Pressman Top',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Poppins',
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
                 ],
               ),
               Text(
                 'Cost per day',
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  color: Color(0xFF6C6B6B),
-                  fontSize: 8,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFF6C6B6B),
+                      fontSize: 8,
+                    ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '50 Rs',
-                    style: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFFDA1111),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    '300 Rs',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Poppins',
+                          color: Color(0xFFDA1111),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                 ],
               ),

@@ -1,12 +1,9 @@
 import '../components/home2_widget.dart';
 import '../components/home_search_widget.dart';
-import '../components/search1_widget.dart';
+import '../components/search_component_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../search_a/search_a_widget.dart';
-import '../search_f/search_f_widget.dart';
-import '../search_l/search_l_widget.dart';
-import '../searchu/searchu_widget.dart';
+import '../search/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,10 +40,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Text(
                             'Offers',
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 10,
+                                    ),
                           ),
                         ],
                       ),
@@ -65,10 +63,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Text(
                             'Bundles',
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 10,
+                                    ),
                           ),
                         ],
                       ),
@@ -79,7 +78,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             width: MediaQuery.of(context).size.width * 0.95,
                             height: 360,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.tertiaryColor,
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -95,7 +94,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchuWidget(),
+                                                SearchWidget(),
                                           ),
                                         );
                                       },
@@ -126,12 +125,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           0, 3, 0, 0),
                                       child: Text(
                                         'Upper Wear',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                       ),
                                     ),
                                     InkWell(
@@ -140,7 +140,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchFWidget(),
+                                                SearchWidget(),
                                           ),
                                         );
                                       },
@@ -171,12 +171,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           0, 3, 0, 0),
                                       child: Text(
                                         'Foot Wear',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -191,7 +192,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchLWidget(),
+                                                SearchWidget(),
                                           ),
                                         );
                                       },
@@ -222,12 +223,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           0, 3, 0, 0),
                                       child: Text(
                                         'Lower Wear',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                       ),
                                     ),
                                     InkWell(
@@ -236,7 +238,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchAWidget(),
+                                                SearchWidget(),
                                           ),
                                         );
                                       },
@@ -267,12 +269,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           0, 3, 0, 0),
                                       child: Text(
                                         'Accesories',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -287,10 +290,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Text(
                             'Best collection',
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 10,
+                                    ),
                           ),
                         ],
                       ),
@@ -298,10 +302,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
-                            child: Search1Widget(),
+                            child: SearchComponentWidget(),
                           ),
                           Expanded(
-                            child: Search1Widget(),
+                            child: SearchComponentWidget(),
                           ),
                         ],
                       ),
@@ -309,10 +313,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
-                            child: Search1Widget(),
+                            child: SearchComponentWidget(),
                           ),
                           Expanded(
-                            child: Search1Widget(),
+                            child: SearchComponentWidget(),
                           ),
                         ],
                       ),

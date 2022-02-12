@@ -1,6 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../searchu/searchu_widget.dart';
+import '../search/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +21,7 @@ class _Home2WidgetState extends State<Home2Widget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SearchuWidget(),
+              builder: (context) => SearchWidget(),
             ),
           );
         },
@@ -29,7 +29,7 @@ class _Home2WidgetState extends State<Home2Widget> {
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.25,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.tertiaryColor,
+            color: FlutterFlowTheme.of(context).tertiaryColor,
             image: DecorationImage(
               fit: BoxFit.fitWidth,
               image: Image.asset(
