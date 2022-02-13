@@ -1,3 +1,4 @@
+import 'package:ecommerce/otp1/otp1_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             )
-          : NavBarPage(),
+          : Otp1Widget(),
     );
   }
 }
