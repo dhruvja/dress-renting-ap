@@ -1,9 +1,7 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../liked/liked_widget.dart';
 import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeSearchWidget extends StatefulWidget {
@@ -56,7 +54,7 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 30, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 90, 0),
                     child: Container(
                       width: 100,
                       height: 40,
@@ -90,48 +88,6 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
                   child: Icon(
                     Icons.search_sharp,
                     color: Colors.black,
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPageWidget(),
-                      ),
-                    );
-                  },
-                  child: FaIcon(
-                    FontAwesomeIcons.bell,
-                    color: Color(0xFF947306),
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LikedWidget(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: Colors.red,
                     size: 24,
                   ),
                 ),
