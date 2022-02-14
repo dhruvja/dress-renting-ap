@@ -39,12 +39,12 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       );
                     },
                     child: Container(
-                      width: 150,
+                      width: MediaQuery.of(context).size.width * 0.45,
                       height: 160,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).tertiaryColor,
                         image: DecorationImage(
-                          fit: BoxFit.fitHeight,
+                          fit: BoxFit.fitWidth,
                           image: Image.asset(
                             'assets/images/myntra.jpg',
                           ).image,
