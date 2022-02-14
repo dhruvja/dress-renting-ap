@@ -1,5 +1,4 @@
 import '../components/cart_component_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -23,19 +22,6 @@ class _CartWidgetState extends State<CartWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          buttonSize: 46,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: Color(0xFF95A1AC),
-            size: 24,
-          ),
-          onPressed: () async {
-            Navigator.pop(context);
-          },
-        ),
         title: Text(
           'My Cart',
           style: FlutterFlowTheme.of(context).subtitle1.override(

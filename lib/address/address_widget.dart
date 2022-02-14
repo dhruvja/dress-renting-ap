@@ -78,7 +78,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Adress details',
+                            'Address details',
                             style: FlutterFlowTheme.of(context).title1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: Color(0xFF090F13),
