@@ -118,7 +118,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           size: 28,
         ),
       ),
-      drawer: Drawer(
+      endDrawer: Drawer(
         elevation: 16,
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
