@@ -42,7 +42,7 @@ class _SearchWidgetState extends State<SearchWidget> {
       drawer: Drawer(
         elevation: 16,
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
           child: FilterWidget(),
         ),
       ),
@@ -209,6 +209,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -224,6 +226,15 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                           ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 5, 0),
+                                    child: Icon(
+                                      Icons.filter_list,
+                                      color: Colors.black,
+                                      size: 24,
                                     ),
                                   ),
                                 ],

@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../search/search_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FilterWidget extends StatefulWidget {
@@ -333,7 +334,17 @@ class _FilterWidgetState extends State<FilterWidget> {
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                              child: FaIcon(
+                                FontAwesomeIcons.check,
+                                color: Color(0xFF6C6B6B),
+                                size: 18,
+                              ),
+                            ),
                             InkWell(
                               onTap: () async {
                                 await Navigator.push(
@@ -347,6 +358,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                 'Levis',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
+                            ),
+                            Image.asset(
+                              'assets/images/1200px-Levis-logo-quer.svg.png',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.fitWidth,
                             ),
                           ],
                         ),

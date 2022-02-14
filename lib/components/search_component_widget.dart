@@ -47,9 +47,9 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).tertiaryColor,
                         image: DecorationImage(
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.cover,
                           image: Image.asset(
-                            'assets/images/myntra.jpg',
+                            'assets/images/myntra2.jpg',
                           ).image,
                         ),
                         boxShadow: [
