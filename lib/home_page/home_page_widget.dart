@@ -242,7 +242,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchWidget(),
+                                                SearchWidget(category: "upperwear"),
                                           ),
                                         );
                                       },
@@ -288,7 +288,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchWidget(),
+                                                SearchWidget(category: "footwear"),
                                           ),
                                         );
                                       },
@@ -340,7 +340,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchWidget(),
+                                                SearchWidget(category: "lowerwear"),
                                           ),
                                         );
                                       },
@@ -386,7 +386,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchWidget(),
+                                                SearchWidget(category: "accessories"),
                                           ),
                                         );
                                       },
@@ -451,46 +451,46 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: SearchComponentWidget(),
-                          ),
-                          Expanded(
-                            child: SearchComponentWidget(),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: SearchComponentWidget(),
-                          ),
-                          Expanded(
-                            child: SearchComponentWidget(),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                            child: Text(
-                              'Bundles',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 10,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   children: [
+                      //     Expanded(
+                      //       child: SearchComponentWidget(),
+                      //     ),
+                      //     Expanded(
+                      //       child: SearchComponentWidget(),
+                      //     ),
+                      //   ],
+                      // ),
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   children: [
+                      //     Expanded(
+                      //       child: SearchComponentWidget(),
+                      //     ),
+                      //     Expanded(
+                      //       child: SearchComponentWidget(),
+                      //     ),
+                      //   ],
+                      // ),
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   children: [
+                      //     Padding(
+                      //       padding:
+                      //           EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                      //       child: Text(
+                      //         'Bundles',
+                      //         style: FlutterFlowTheme.of(context)
+                      //             .bodyText1
+                      //             .override(
+                      //               fontFamily: 'Poppins',
+                      //               fontSize: 10,
+                      //             ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

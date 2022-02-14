@@ -4,9 +4,14 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import '../api_endpoint.dart';
 
 class SearchWidget extends StatefulWidget {
-  const SearchWidget({Key key}) : super(key: key);
+  final category;
+  const SearchWidget({Key key, @required this.category}) : super(key: key);
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -16,10 +21,84 @@ class _SearchWidgetState extends State<SearchWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
+  String category;
+  bool present = false;
+  var status;
+  bool empty;
+  bool even = true;
+  var data;
+
+  int size;
+  int i;
+
   void initState() {
     super.initState();
     textController = TextEditingController();
+    category = widget.category;
+    search();
+  }
+
+  void search() async {
+    String endpoint = Endpoint();
+    try {
+      var url = endpoint + "/api/getproducts";
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json'
+          },
+          body: jsonEncode(<String, String>{
+            "brand": "",
+            "sub_category": "",
+            "size": "",
+            "category": category
+          }));
+      if (response.statusCode == 200) {
+        // If the server did return a 201 CREATED response,
+        // then parse the JSON.
+        print(response.body);
+        data = json.decode(response.body);
+        print(data);
+        if (data['success']) {
+          int n = data['rows'].length;
+          if (n % 2 != 0) {
+            n = n - 1;
+            setState(() {
+              status = data['rows'];
+              present = true;
+              even = false;
+              size = n;
+            });
+          } else {
+            setState(() {
+              status = data['rows'];
+              present = true;
+              size = n;
+            });
+          }
+        }
+        if (status != null)
+          setState(() {
+            empty = false;
+          });
+      }
+
+      if (!data['success']) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Could not fetch data'),
+              backgroundColor: Colors.redAccent),
+        );
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
   }
 
   @override
@@ -239,50 +318,63 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: SearchComponentWidget(),
+                              if (present)
+                                for (i = 0; i < size; i = i + 2)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: SearchComponentWidget(status[i]),
+                                      ),
+                                      Expanded(
+                                        child: SearchComponentWidget(
+                                            status[i + 1]),
+                                      ),
+                                    ],
                                   ),
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                  Expanded(
-                                    child: SearchComponentWidget(),
-                                  ),
-                                ],
-                              ),
+                              if (present && !even && i == size)
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child:
+                                          SearchComponentWidget(status[size]),
+                                    ),
+                                  ],
+                                ),
+                              // Row(
+                              //   mainAxisSize: MainAxisSize.max,
+                              //   children: [
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //   ],
+                              // ),
+                              // Row(
+                              //   mainAxisSize: MainAxisSize.max,
+                              //   children: [
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //   ],
+                              // ),
+                              // Row(
+                              //   mainAxisSize: MainAxisSize.max,
+                              //   children: [
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //     Expanded(
+                              //       child: SearchComponentWidget(),
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),

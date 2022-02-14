@@ -6,15 +6,20 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../api_endpoint.dart';
 
-class SearchComponentWidget extends StatefulWidget {
-  const SearchComponentWidget({Key key}) : super(key: key);
 
-  @override
-  _SearchComponentWidgetState createState() => _SearchComponentWidgetState();
-}
+class SearchComponentWidget extends StatelessWidget {
 
-class _SearchComponentWidgetState extends State<SearchComponentWidget> {
+var values;
+  String endpoint = Endpoint();
+
+  SearchComponentWidget(this.values);
+
+  void vals() {
+    print(this.values);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -37,7 +42,7 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductDetailsWidget(),
+                          builder: (context) => ProductDetailsWidget(values: values),
                         ),
                       );
                     },
@@ -48,8 +53,8 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                         color: FlutterFlowTheme.of(context).tertiaryColor,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: Image.asset(
-                            'assets/images/myntra2.jpg',
+                          image: Image.network(
+                            endpoint + values['product_image'][0]['image']
                           ).image,
                         ),
                         boxShadow: [
@@ -78,7 +83,7 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       );
                     },
                     child: Text(
-                      'Pressman Top',
+                      values['product_name'],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
                             color: FlutterFlowTheme.of(context).primaryColor,
@@ -102,7 +107,7 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '300 Rs',
+                    values['price'].toString() + ' Rs',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Poppins',
                           color: Color(0xFFDA1111),

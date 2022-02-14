@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -184,6 +188,12 @@ class _Otp2WidgetState extends State<Otp2Widget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              List bundles = [false, false, false, false];
+                              final storage = new FlutterSecureStorage();
+                              await storage.delete(key: 'cart');
+
+                              await storage.write(
+                                  key: 'bundles', value: json.encode(bundles));
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
