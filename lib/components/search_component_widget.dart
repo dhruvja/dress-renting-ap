@@ -1,3 +1,6 @@
+import 'package:ecommerce/product_details/product_details_widget.dart';
+import 'package:ecommerce/product_page/product_page_widget.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -34,7 +37,7 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NavBarPage(initialPage: 'cart'),
+                          builder: (context) => ProductDetailsWidget(),
                         ),
                       );
                     },
