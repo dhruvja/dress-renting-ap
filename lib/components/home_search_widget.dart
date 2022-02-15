@@ -1,6 +1,5 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,74 +23,29 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPageWidget(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 30, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 90, 0),
-                    child: Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
-                        image: DecorationImage(
-                          fit: BoxFit.fitWidth,
-                          image: Image.asset(
-                            'assets/images/RAAZDA.png',
-                          ).image,
-                        ),
+                  Container(
+                    width: 100,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: Image.asset(
+                          'assets/images/RAAZDA.png',
+                        ).image,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPageWidget(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.search_sharp,
-                    color: Colors.black,
-                    size: 24,
-                  ),
-                ),
-              ],
             ),
           ],
         ),
