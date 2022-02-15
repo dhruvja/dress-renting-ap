@@ -1,3 +1,4 @@
+import 'package:ecommerce/address/address_widget.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/cart_component_widget.dart';
@@ -338,8 +339,14 @@ class _CartWidgetState extends State<CartWidget> {
                         ],
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                         await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddressWidget()
+                                          ),
+                                        );
                         },
                         text: 'Proceed to Checkout',
                         options: FFButtonOptions(
