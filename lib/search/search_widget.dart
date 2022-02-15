@@ -32,15 +32,78 @@ class _SearchWidgetState extends State<SearchWidget> {
   int size;
   int i;
 
+  String endpoint = Endpoint();
+
+  List filters = [
+    {
+      "category": [
+        {"type": "upperwear", "key": 0},
+        {"type": "lowerwear", "key": 1},
+        {"type": "footwear", "key": 2},
+        {"type": "accessories", "key": 3},
+      ]
+    },
+    {"sub_category": []},
+    {
+      "size": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {"brand": []},
+    {
+      "gender": ["male", "female"]
+    }
+  ];
+
   void initState() {
     super.initState();
     textController = TextEditingController();
     category = widget.category;
+    getFilters();
     search();
   }
 
+  void getFilters() async {
+    var url = endpoint + "/api/getfilters";
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        print(response.body);
+        var brandAndSizeFilter = json.decode(response.body);
+        var updatedFilters = [...filters];
+        updatedFilters[3] = brandAndSizeFilter['brand'];
+        List u = [];
+        List l = [];
+        List f = [];
+        List a = [];
+        brandAndSizeFilter['product'].forEach((sub) => {
+              if (sub['category'] == "upperwear")
+                u.add(sub['sub_category'])
+              else if (sub['category'] == "lowerwear")
+                l.add(sub['sub_category'])
+              else if (sub['category'] == "footwear")
+                f.add(sub['sub_category'])
+              else
+                a.add(sub['sub_category'])
+            });
+        updatedFilters[1]['sub_category'].add(u);
+        updatedFilters[1]['sub_category'].add(l);
+        updatedFilters[1]['sub_category'].add(f);
+        updatedFilters[1]['sub_category'].add(a);
+        print(updatedFilters);
+        setState(() {
+          
+        });
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
+  }
+
   void search() async {
-    String endpoint = Endpoint();
     try {
       var url = endpoint + "/api/getproducts";
       print(url);
@@ -324,7 +387,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         0, 0, 5, 0),
                                     child: InkWell(
                                       onTap: () async {
-                                         scaffoldKey.currentState.openEndDrawer();
+                                        scaffoldKey.currentState
+                                            .openEndDrawer();
                                       },
                                       child: Icon(
                                         Icons.filter_list,
