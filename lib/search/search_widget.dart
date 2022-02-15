@@ -420,8 +420,9 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Levis',
+                                                AutoSizeText(
+                                                  'Levis lenin margeret nova',
+                                                  textAlign: TextAlign.start,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
