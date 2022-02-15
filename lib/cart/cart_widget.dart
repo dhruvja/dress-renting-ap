@@ -304,28 +304,31 @@ class _CartWidgetState extends State<CartWidget> {
                         ),
                       ],
                     ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Proceed to Checkout',
-                      options: FFButtonOptions(
-                        width: 320,
-                        height: 60,
-                        color: Color(0xFF03CE9F),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                        elevation: 3,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                      child: FFButtonWidget(
+                        onPressed: () {
+                          print('Button pressed ...');
+                        },
+                        text: 'Proceed to Checkout',
+                        options: FFButtonOptions(
+                          width: 320,
+                          height: 60,
+                          color: Color(0xFF03CE9F),
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 3,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 8,
                         ),
-                        borderRadius: 8,
                       ),
                     ),
                   ],
