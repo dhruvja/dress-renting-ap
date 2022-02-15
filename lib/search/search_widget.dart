@@ -2,6 +2,7 @@ import '../components/filter_widget.dart';
 import '../components/search_component_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,10 +92,21 @@ class _SearchWidgetState extends State<SearchWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   4, 0, 4, 0),
-                                          child: Icon(
-                                            Icons.search_rounded,
-                                            color: Color(0xFF95A1AC),
-                                            size: 24,
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SearchWidget(),
+                                                ),
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.search_rounded,
+                                              color: Color(0xFF95A1AC),
+                                              size: 24,
+                                            ),
                                           ),
                                         ),
                                         Expanded(
@@ -231,10 +243,21 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 5, 0),
-                                    child: Icon(
-                                      Icons.filter_list,
-                                      color: Colors.black,
-                                      size: 24,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                NavBarPage(initialPage: 'cart'),
+                                          ),
+                                        );
+                                      },
+                                      child: Icon(
+                                        Icons.filter_list,
+                                        color: Colors.black,
+                                        size: 24,
+                                      ),
                                     ),
                                   ),
                                 ],
