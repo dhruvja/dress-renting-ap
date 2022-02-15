@@ -29,12 +29,14 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
 
   var values;
   String endpoint = Endpoint();
-  var selectedSize = {"size": "xs", "id": "0"};
+  var selectedSize = {"size": "nil", "id": "0"};
   bool x;
   bool y;
   var bundles;
   var present = false;
   var loading = false;
+  var bundlePresent = false;
+  bool sizeExist = false;
 
   void initState() {
     super.initState();
@@ -50,6 +52,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
     var categories = json.decode(catego);
     var items = await storage.read(key: 'cart');
     bool available = true;
+    bool isBundlePresent = false;
+    bool doesSizeExist = false;
     if (items == null) {
       available = true;
     } else {
@@ -61,11 +65,28 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         }
       }
     }
-    setState(() {
-      bundles = categories;
-      present = available;
-      loading = true;
-    });
+    switch (values['category']) {
+      case 'upperwear':
+        if (categories[0]) isBundlePresent = true;
+        break;
+      case 'lowerwear':
+        if (categories[1]) isBundlePresent = true;
+        break;
+      case 'footwear':
+        if (categories[2]) isBundlePresent = true;
+        break;
+      case 'accessories':
+        if (categories[3]) isBundlePresent = true;
+        break;
+    }
+    if (values['product_size'].length > 0) doesSizeExist = true;
+      setState(() {
+        bundles = categories;
+        present = available;
+        bundlePresent = isBundlePresent;
+        sizeExist = doesSizeExist;
+        loading = true;
+      });
   }
 
   void bookItem() async {
@@ -91,6 +112,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
     });
     await storage.write(key: 'bundles', value: json.encode(updateBundles));
     var items = await storage.read(key: 'cart');
+    values['selected_size'] = selectedSize['size'];
     if (items == null) {
       List cart = [];
       cart.add(values);
@@ -106,6 +128,42 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         return AlertDialog(
           title: Text('Added'),
           content: Text('The ' + values['category'] + ' is Booked'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NavBarPage(initialPage: 'HomePage'),
+      ),
+    );
+  }
+
+  void replaceItem() async {
+    final storage = await FlutterSecureStorage();
+    var StringItems = await storage.read(key: 'cart');
+    var items = json.decode(StringItems);
+    int i;
+    for (i = 0; i < items.length; i++) {
+      if (items[i]['category'] == values['category']) {
+        break;
+      }
+    }
+    items[i] = values;
+    values['selected_size'] = selectedSize['size'];
+    await storage.write(key: 'cart', value: json.encode(items));
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return AlertDialog(
+          title: Text('Added'),
+          content: Text('The ' + values['category'] + ' is Replaced'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(alertDialogContext),
@@ -399,61 +457,61 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          if(loading)
-                          ...(bundleNames).map((name) {
-                            var index = bundleNames.indexOf(name);
-                            y = false;
-                            if (bundles[index]) y = true;
-                            return (Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 5, 0),
-                                  child: Container(
-                                    width: 30,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: y
-                                          ? Colors.black
-                                          : FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 10,
-                                          color: Color(0xFFD3E0DC),
-                                        )
-                                      ],
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Color(0xFFAEE1E1),
+                          if (loading)
+                            ...(bundleNames).map((name) {
+                              var index = bundleNames.indexOf(name);
+                              y = false;
+                              if (bundles[index]) y = true;
+                              return (Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5, 0, 5, 0),
+                                    child: Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        color: y
+                                            ? Colors.black
+                                            : FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 10,
+                                            color: Color(0xFFD3E0DC),
+                                          )
+                                        ],
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: Color(0xFFAEE1E1),
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.w600,
+                                                  color: y
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                                ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.w600,
-                                                color: y
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
                                   ),
-                                ),
-                              ],
-                            ));
-                          }),
+                                ],
+                              ));
+                            }),
                         ],
                       ),
                     ),
@@ -482,14 +540,45 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         ),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (present) {
-                              bookItem();
-                            } else {
+                            if (sizeExist && selectedSize['size'] == 'nil') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                    content: Text('Already added to bundle'),
-                                    backgroundColor: Colors.green),
+                                    content: Text(
+                                        'Please select the size before adding the item'),
+                                    backgroundColor: Colors.redAccent),
                               );
+                            } else {
+                              if (present && bundlePresent) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text('Replace'),
+                                      content: Text(
+                                          "You have already bought one item in this category, Do you want to replace it?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => replaceItem(),
+                                          child: Text('Replace'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              } else if (present) {
+                                bookItem();
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Already added to bundle'),
+                                      backgroundColor: Colors.green),
+                                );
+                              }
                             }
                           },
                           text: present ? 'Add to bundle' : 'Added to bundle',

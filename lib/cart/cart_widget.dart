@@ -1,3 +1,5 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../components/cart_component_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
 
 class CartWidget extends StatefulWidget {
   const CartWidget({Key key}) : super(key: key);
@@ -15,6 +18,32 @@ class CartWidget extends StatefulWidget {
 
 class _CartWidgetState extends State<CartWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  var items;
+  bool present = false;
+  int sum = 0;
+
+  void initState() {
+    super.initState();
+    getCartItems();
+  }
+
+  void getCartItems() async {
+    final storage = await FlutterSecureStorage();
+    var StringItems = await storage.read(key: 'cart');
+    if (StringItems == null) {
+      print("No items");
+    } else {
+      var DecodedItems = json.decode(StringItems);
+      int tempSum = 0;
+      DecodedItems.forEach((singleItem) => {tempSum += singleItem['price']});
+      setState(() {
+        items = DecodedItems;
+        sum = tempSum;
+        present = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +113,7 @@ class _CartWidgetState extends State<CartWidget> {
                           ),
                     ),
                     Text(
-                      'Rs.600',
+                      'Rs. ' + sum.toString(),
                       textAlign: TextAlign.end,
                       style: FlutterFlowTheme.of(context).subtitle2.override(
                             fontFamily: 'Lexend Deca',
@@ -110,7 +139,10 @@ class _CartWidgetState extends State<CartWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CartComponentWidget(),
+                          if (present)
+                            ...(items).map((item) {
+                              return CartComponentWidget(item);
+                            })
                         ],
                       ),
                     ),
@@ -173,7 +205,7 @@ class _CartWidgetState extends State<CartWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    'Rs. ' + sum.toString(),
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -207,7 +239,7 @@ class _CartWidgetState extends State<CartWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    '0%',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -241,7 +273,7 @@ class _CartWidgetState extends State<CartWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    'Free',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -275,7 +307,7 @@ class _CartWidgetState extends State<CartWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Order Total]',
+                                    'Rs. ' + sum.toString(),
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1

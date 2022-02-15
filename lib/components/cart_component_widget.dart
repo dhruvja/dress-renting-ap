@@ -2,15 +2,14 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../api_endpoint.dart';
 
-class CartComponentWidget extends StatefulWidget {
-  const CartComponentWidget({Key key}) : super(key: key);
+class CartComponentWidget extends StatelessWidget {
+  var values;
+  CartComponentWidget(this.values);
 
-  @override
-  _CartComponentWidgetState createState() => _CartComponentWidgetState();
-}
+  String endpoint = Endpoint();
 
-class _CartComponentWidgetState extends State<CartComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +30,8 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    'assets/images/upper.png',
+                  child: Image.network(
+                    endpoint + values['product_image'][0]['image'],
                     width: 74,
                     height: 74,
                     fit: BoxFit.cover,
@@ -50,7 +49,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Pressed T-Shirt',
+                    values['product_name'],
                     style: FlutterFlowTheme.of(context).subtitle1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0xFF111417),
@@ -61,7 +60,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                     child: Text(
-                      'Size:XXL',
+                      'Size: ' + values['selected_size'],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Lexend Deca',
                             color: Color(0xFF090F13),
@@ -99,7 +98,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  'Rs.250',
+                                  'Rs. ' + values['price'].toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle1
                                       .override(
