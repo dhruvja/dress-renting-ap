@@ -17,6 +17,7 @@ class SearchWidget extends StatefulWidget {
 
 class _SearchWidgetState extends State<SearchWidget> {
   TextEditingController textController;
+  bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -638,6 +639,31 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                           ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SwitchListTile(
+                                      value: switchListTileValue ??= true,
+                                      onChanged: (newValue) => setState(
+                                          () => switchListTileValue = newValue),
+                                      title: Text(
+                                        'Male',
+                                        style: FlutterFlowTheme.of(context)
+                                            .title3
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold,
+                                              lineHeight: 0,
+                                            ),
+                                      ),
+                                      tileColor: Color(0xFFF5F5F5),
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.trailing,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              130, 0, 0, 0),
                                     ),
                                   ),
                                   Padding(
