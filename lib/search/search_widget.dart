@@ -32,14 +32,16 @@ class _SearchWidgetState extends State<SearchWidget> {
   bool even = true;
   var data;
 
+  int subIndex = 0;
+
   int active = 0;
 
   List selected = [
-    {"category": ""},
-    {"sub_category": ""},
-    {"size": ""},
-    {"brand": ""},
-    {"gender": ""},
+    {"category": "", "key": 0},
+    "",
+    "",
+    "",
+    ""
   ];
 
   int size;
@@ -47,23 +49,19 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   String endpoint = Endpoint();
 
+  List allFilterNames = ["category", "sub_category", "size", "brand", "gender"];
+
   List filters = [
-    {
-      "category": [
-        {"type": "upperwear", "key": 0},
-        {"type": "lowerwear", "key": 1},
-        {"type": "footwear", "key": 2},
-        {"type": "accessories", "key": 3},
-      ]
-    },
-    {"sub_category": []},
-    {
-      "size": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"]
-    },
-    {"brand": []},
-    {
-      "gender": ["male", "female"]
-    }
+    [
+      {"type": "upperwear", "key": 0},
+      {"type": "lowerwear", "key": 1},
+      {"type": "footwear", "key": 2},
+      {"type": "accessories", "key": 3},
+    ],
+    [],
+    ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
+    [],
+    ["male", "female"]
   ];
 
   void initState() {
@@ -82,11 +80,13 @@ class _SearchWidgetState extends State<SearchWidget> {
         print(response.body);
         var brandAndSizeFilter = json.decode(response.body);
         var updatedFilters = [...filters];
-        updatedFilters[3] = brandAndSizeFilter['brand'];
         List u = [];
         List l = [];
         List f = [];
         List a = [];
+
+        List Brand = [];
+
         brandAndSizeFilter['product'].forEach((sub) => {
               if (sub['category'] == "upperwear")
                 u.add(sub['sub_category'])
@@ -97,12 +97,26 @@ class _SearchWidgetState extends State<SearchWidget> {
               else
                 a.add(sub['sub_category'])
             });
-        updatedFilters[1]['sub_category'].add(u);
-        updatedFilters[1]['sub_category'].add(l);
-        updatedFilters[1]['sub_category'].add(f);
-        updatedFilters[1]['sub_category'].add(a);
+        brandAndSizeFilter['brand']
+            .forEach((brand) => {Brand.add(brand['brand_name'])});
+        updatedFilters[1].add(u);
+        updatedFilters[1].add(l);
+        updatedFilters[1].add(f);
+        updatedFilters[1].add(a);
+        updatedFilters[3] = Brand;
         print(updatedFilters);
-        setState(() {});
+        var selectedCategory = [...selected];
+        var index;
+        updatedFilters[0].forEach((fil) => {
+              if (fil['type'] == category)
+                {selectedCategory[0]['key'] = fil['key'], index = fil['key']}
+            });
+        selectedCategory[0]['category'] = category;
+        setState(() {
+          filters = updatedFilters;
+          selected = selectedCategory;
+          subIndex = index;
+        });
       }
     } catch (e) {
       print(e);
@@ -243,68 +257,17 @@ class _SearchWidgetState extends State<SearchWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF7F7F7),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0xFF6C6B6B),
-                                        )
-                                      ],
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                      ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SearchWidget(),
-                                          ),
-                                        );
-                                      },
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 0, 0),
-                                            child: Text(
-                                              'Size',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 12,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
+                              for (int i = 0; i < allFilterNames.length; i++)
+                                Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
                                       width: 100,
                                       height: 30,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF7F7F7),
+                                        color: i == active
+                                            ? Color(0xFFAEE1E1)
+                                            : Color(0xFFF7F7F7),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Color(0xFF6C6B6B),
@@ -317,203 +280,33 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       ),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SearchWidget(),
-                                            ),
-                                          );
+                                          setState(() {
+                                            active = i;
+                                          });
                                         },
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
-                                                child: Text(
-                                                  'Gender',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 12,
-                                                      ),
-                                                ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5, 0, 0, 0),
+                                              child: Text(
+                                                allFilterNames[i],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12,
+                                                        ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                   ],
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF7F7F7),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0xFF6C6B6B),
-                                        )
-                                      ],
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                      ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SearchWidget(),
-                                          ),
-                                        );
-                                      },
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5, 0, 0, 0),
-                                              child: Text(
-                                                'Brand',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 12,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFAEE1E1),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0xFF6C6B6B),
-                                        )
-                                      ],
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                      ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SearchWidget(),
-                                          ),
-                                        );
-                                      },
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5, 0, 0, 0),
-                                              child: AutoSizeText(
-                                                'Category',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 10,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF7F7F7),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0xFF6C6B6B),
-                                        )
-                                      ],
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                      ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SearchWidget(),
-                                          ),
-                                        );
-                                      },
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5, 0, 0, 0),
-                                              child: Text(
-                                                'Sub Category',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 12,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                )
                             ],
                           ),
                         ),
@@ -526,44 +319,134 @@ class _SearchWidgetState extends State<SearchWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 10, 0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.check,
-                                          color: Color(0xFF6C6B6B),
-                                          size: 18,
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SearchWidget(),
+                                  if (active != 1)
+                                    ...(filters[active]).map((filter) {
+                                      if (active == 3) print(filter);
+                                      if (active == 0)
+                                        return (Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 10, 0),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.check,
+                                                color: Color(0xFF6C6B6B),
+                                                size: 18,
+                                              ),
                                             ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'Levis',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        ),
-                                      ),
-                                      Image.asset(
-                                        'assets/images/1200px-Levis-logo-quer.svg.png',
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                    ],
-                                  ),
+                                            InkWell(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SearchWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Text(
+                                                filter['type'],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                            Image.asset(
+                                              'assets/images/1200px-Levis-logo-quer.svg.png',
+                                              width: 50,
+                                              height: 50,
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ],
+                                        ));
+                                      else
+                                        return (Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 10, 0),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.check,
+                                                color: Color(0xFF6C6B6B),
+                                                size: 18,
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SearchWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Text(
+                                                filter,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                            // Image.asset(
+                                            //   'assets/images/1200px-Levis-logo-quer.svg.png',
+                                            //   width: 50,
+                                            //   height: 50,
+                                            //   fit: BoxFit.fitWidth,
+                                            // ),
+                                          ],
+                                        ));
+                                    })
+                                  else
+                                    ...(filters[active][subIndex])
+                                        .map((filter) {
+                                      return (Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 10, 0),
+                                            child: FaIcon(
+                                              FontAwesomeIcons.check,
+                                              color: Color(0xFF6C6B6B),
+                                              size: 18,
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SearchWidget(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              filter,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'assets/images/1200px-Levis-logo-quer.svg.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.fitWidth,
+                                          ),
+                                        ],
+                                      ));
+                                    })
                                 ],
                               ),
                             ),
