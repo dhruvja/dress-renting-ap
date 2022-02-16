@@ -8,6 +8,10 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import '../api_endpoint.dart';
 
 class SignupWidget extends StatefulWidget {
   const SignupWidget({Key key}) : super(key: key);
@@ -22,12 +26,42 @@ class _SignupWidgetState extends State<SignupWidget> {
   TextEditingController passwordController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  String endpoint = Endpoint();
+
   @override
   void initState() {
     super.initState();
     confirmPasswordController = TextEditingController();
     emailAddressController = TextEditingController();
     passwordController = TextEditingController();
+  }
+
+  void register() async {
+    try {
+      var url = endpoint + "/api/getproducts";
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json'
+          },
+          body: jsonEncode(
+              <String, String>{"username": "", "email": "", "password": ""}));
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Registered Successfully, Please Login'),
+            backgroundColor: Colors.redAccent),
+      );
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
   }
 
   @override
@@ -48,9 +82,9 @@ class _SignupWidgetState extends State<SignupWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Image.asset(
-                        'assets/images/RAAZDA.png',
+                        'assets/images/ciante2_.png',
                         width: 200,
-                        height: 50,
+                        height: 90,
                         fit: BoxFit.fitWidth,
                       ),
                     ],
@@ -104,6 +138,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                       controller: emailAddressController,
                       obscureText: false,
                       decoration: InputDecoration(
+                        labelText: 'Your email address...',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -111,7 +146,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
-                        hintText: 'Name',
+                        hintText: 'Enter your email...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -157,6 +192,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                       controller: passwordController,
                       obscureText: false,
                       decoration: InputDecoration(
+                        labelText: 'Password',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -164,7 +200,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
-                        hintText: 'Email',
+                        hintText: 'Enter your email...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -222,6 +258,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                       controller: confirmPasswordController,
                       obscureText: false,
                       decoration: InputDecoration(
+                        labelText: 'Confirm Password',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -229,7 +266,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
-                        hintText: 'Password',
+                        hintText: 'Enter your email...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',

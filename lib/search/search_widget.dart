@@ -166,6 +166,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               status = data['rows'];
               present = true;
               size = n;
+              even = true;
             });
           }
         }

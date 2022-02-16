@@ -51,7 +51,7 @@ class _Otp2WidgetState extends State<Otp2Widget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/RAAZDA.png',
+                      'assets/images/ciante2_.png',
                       width: 240,
                       height: 60,
                       fit: BoxFit.cover,
