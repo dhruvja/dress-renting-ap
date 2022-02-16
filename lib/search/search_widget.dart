@@ -36,6 +36,8 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   int active = 0;
 
+  bool filterPresent = false;
+
   List selected = [
     {"category": "", "key": 0},
     "",
@@ -138,10 +140,10 @@ class _SearchWidgetState extends State<SearchWidget> {
             'accept': 'application/json'
           },
           body: jsonEncode(<String, String>{
-            "brand": "",
-            "sub_category": "",
-            "size": "",
-            "category": category
+            "brand": selected[3],
+            "sub_category": selected[1],
+            "size": selected[2],
+            "category": selected[0]['category']
           }));
       if (response.statusCode == 200) {
         // If the server did return a 201 CREATED response,
@@ -207,278 +209,411 @@ class _SearchWidgetState extends State<SearchWidget> {
           size: 28,
         ),
       ),
-      endDrawer: Drawer(
-        elevation: 16,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.9,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).tertiaryColor,
-              ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 45, 10, 10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Filters',
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.delete,
-                              color: Color(0xFFDA1111),
-                              size: 24,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                          child: Column(
+      endDrawer: Container(
+        width: MediaQuery.of(context).size.width * 0.75,
+        child: Drawer(
+          elevation: 16,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.9,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 45, 10, 10),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              for (int i = 0; i < allFilterNames.length; i++)
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 100,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        color: i == active
-                                            ? Color(0xFFAEE1E1)
-                                            : Color(0xFFF7F7F7),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color(0xFF6C6B6B),
-                                          )
-                                        ],
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                        ),
-                                      ),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          setState(() {
-                                            active = i;
-                                          });
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5, 0, 0, 0),
-                                              child: Text(
-                                                allFilterNames[i],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 12,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
+                              Text(
+                                'Filters',
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                              ),
                             ],
                           ),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(0, -1),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (active != 1)
-                                    ...(filters[active]).map((filter) {
-                                      if (active == 3) print(filter);
-                                      if (active == 0)
-                                        return (Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 10, 0),
-                                              child: FaIcon(
-                                                FontAwesomeIcons.check,
-                                                color: Color(0xFF6C6B6B),
-                                                size: 18,
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SearchWidget(),
-                                                  ),
-                                                );
-                                              },
-                                              child: Text(
-                                                filter['type'],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
-                                              ),
-                                            ),
-                                            Image.asset(
-                                              'assets/images/1200px-Levis-logo-quer.svg.png',
-                                              width: 50,
-                                              height: 50,
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                          ],
-                                        ));
-                                      else
-                                        return (Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 10, 0),
-                                              child: FaIcon(
-                                                FontAwesomeIcons.check,
-                                                color: Color(0xFF6C6B6B),
-                                                size: 18,
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SearchWidget(),
-                                                  ),
-                                                );
-                                              },
-                                              child: Text(
-                                                filter,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
-                                              ),
-                                            ),
-                                            // Image.asset(
-                                            //   'assets/images/1200px-Levis-logo-quer.svg.png',
-                                            //   width: 50,
-                                            //   height: 50,
-                                            //   fit: BoxFit.fitWidth,
-                                            // ),
-                                          ],
-                                        ));
-                                    })
-                                  else
-                                    ...(filters[active][subIndex])
-                                        .map((filter) {
-                                      return (Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 10, 0),
-                                            child: FaIcon(
-                                              FontAwesomeIcons.check,
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  print("Delete");
+                                  if (active > 0) {
+                                    var select = [...selected];
+                                    select[active] = "";
+                                    setState(() {
+                                      selected = select;
+                                    });
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'Cannot Delete the Category Filter'),
+                                          backgroundColor: Colors.redAccent),
+                                    );
+                                  }
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Color(0xFFDA1111),
+                                  size: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                for (int i = 0; i < allFilterNames.length; i++)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: i == active
+                                              ? Color(0xFFAEE1E1)
+                                              : Color(0xFFF7F7F7),
+                                          boxShadow: [
+                                            BoxShadow(
                                               color: Color(0xFF6C6B6B),
-                                              size: 18,
-                                            ),
+                                            )
+                                          ],
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
                                           ),
-                                          InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SearchWidget(),
+                                        ),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            setState(() {
+                                              active = i;
+                                            });
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
+                                                child: Text(
+                                                  allFilterNames[i],
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 12,
+                                                      ),
                                                 ),
-                                              );
-                                            },
-                                            child: Text(
-                                              filter,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional(0, -1),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (active != 1)
+                                      ...(filters[active]).map((filter) {
+                                        filterPresent = false;
+                                        if (active == 0) {
+                                          if (selected[active]['category'] ==
+                                              filter['type'])
+                                            filterPresent = true;
+                                          return (Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.1,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    if (filterPresent)
+                                                      Icon(
+                                                        Icons.check,
+                                                        color: Colors.black,
+                                                        size: 20,
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () async {
+                                                          var select = [
+                                                            ...selected
+                                                          ];
+                                                          select[active]
+                                                                  ['category'] =
+                                                              filter['type'];
+                                                          var index =
+                                                              filter['key'];
+                                                          setState(() {
+                                                            selected = select;
+                                                            subIndex = index;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          filter['type'],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                        } else {
+                                          if (selected[active] == filter)
+                                            filterPresent = true;
+                                          return (Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.1,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    if (filterPresent)
+                                                      Icon(
+                                                        Icons.check,
+                                                        color: Colors.black,
+                                                        size: 20,
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () async {
+                                                          var select = [
+                                                            ...selected
+                                                          ];
+                                                          select[active] =
+                                                              filter;
+                                                          setState(() {
+                                                            selected = select;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          filter,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                        }
+                                      }),
+                                    if (active == 1)
+                                      ...(filters[active][subIndex])
+                                          .map((filter) {
+                                        filterPresent = false;
+                                        if (selected[active] == filter)
+                                          filterPresent = true;
+                                        return (Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.1,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  if (filterPresent)
+                                                    Icon(
+                                                      Icons.check,
+                                                      color: Colors.black,
+                                                      size: 20,
+                                                    ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Image.asset(
-                                            'assets/images/1200px-Levis-logo-quer.svg.png',
-                                            width: 50,
-                                            height: 50,
-                                            fit: BoxFit.fitWidth,
-                                          ),
-                                        ],
-                                      ));
-                                    })
-                                ],
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.3,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              child: SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () async {
+                                                        var select = [
+                                                          ...selected
+                                                        ];
+                                                        select[active] = filter;
+                                                        setState(() {
+                                                          selected = select;
+                                                        });
+                                                        print(select);
+                                                      },
+                                                      child: Text(
+                                                        filter,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ));
+                                      })
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            FFButtonWidget(
-              onPressed: () {
-                print('Button pressed ...');
-              },
-              text: 'Apply filter',
-              options: FFButtonOptions(
-                width: 200,
-                height: 40,
-                color: FlutterFlowTheme.of(context).primaryColor,
-                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
-                    ),
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                  width: 1,
+              FFButtonWidget(
+                onPressed: () {
+                  search();
+                },
+                text: 'Apply filter',
+                options: FFButtonOptions(
+                  width: 200,
+                  height: 40,
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                  borderRadius: 2,
                 ),
-                borderRadius: 2,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: SafeArea(
