@@ -1,3 +1,4 @@
+import 'package:ecommerce/login/login_widget.dart';
 import 'package:ecommerce/otp1/otp1_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             )
-          : Otp1Widget(),
+          : LoginWidget(),
     );
   }
 }
