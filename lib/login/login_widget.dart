@@ -1,6 +1,8 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
+import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,17 +14,15 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  TextEditingController emailTextController;
-  TextEditingController passwordTextController;
-  bool passwordVisibility;
+  TextEditingController textController1;
+  TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController();
-    passwordTextController = TextEditingController();
-    passwordVisibility = false;
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
@@ -93,7 +93,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             20, 0, 20, 0),
                                         child: TextFormField(
-                                          controller: emailTextController,
+                                          controller: textController1,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'Email',
@@ -143,8 +143,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             20, 0, 20, 0),
                                         child: TextFormField(
-                                          controller: passwordTextController,
-                                          obscureText: !passwordVisibility,
+                                          controller: textController2,
+                                          obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'Password',
                                             enabledBorder: UnderlineInputBorder(
@@ -169,19 +169,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 topRight: Radius.circular(4.0),
                                               ),
                                             ),
-                                            suffixIcon: InkWell(
-                                              onTap: () => setState(
-                                                () => passwordVisibility =
-                                                    !passwordVisibility,
-                                              ),
-                                              child: Icon(
-                                                passwordVisibility
-                                                    ? Icons.visibility_outlined
-                                                    : Icons
-                                                        .visibility_off_outlined,
-                                                size: 22,
-                                              ),
-                                            ),
                                           ),
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
@@ -196,8 +183,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 20),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                NavBarPage(initialPage: 'cart'),
+                                          ),
+                                        );
                                       },
                                       text: 'Sign in',
                                       options: FFButtonOptions(
@@ -273,9 +266,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       AlignmentDirectional(
                                                           0, 0),
                                                   child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button pressed ...');
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ProductPageWidget(),
+                                                        ),
+                                                      );
                                                     },
                                                     text: 'Sign in',
                                                     icon: Icon(
