@@ -22,7 +22,8 @@ class SignupWidget extends StatefulWidget {
 
 class _SignupWidgetState extends State<SignupWidget> {
   TextEditingController confirmPasswordController;
-  TextEditingController emailAddressController;
+  TextEditingController emailAddressController1;
+  TextEditingController emailAddressController2;
   TextEditingController passwordController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,7 +33,8 @@ class _SignupWidgetState extends State<SignupWidget> {
   void initState() {
     super.initState();
     confirmPasswordController = TextEditingController();
-    emailAddressController = TextEditingController();
+    emailAddressController1 = TextEditingController();
+    emailAddressController2 = TextEditingController();
     passwordController = TextEditingController();
   }
 
@@ -135,7 +137,56 @@ class _SignupWidgetState extends State<SignupWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 12),
                     child: TextFormField(
-                      controller: emailAddressController,
+                      controller: emailAddressController1,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Your name',
+                        labelStyle:
+                            FlutterFlowTheme.of(context).bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF57636C),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        hintText: 'Enter your name',
+                        hintStyle:
+                            FlutterFlowTheme.of(context).bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF57636C),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFFDBE2E7),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFFDBE2E7),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding:
+                            EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Color(0xFF1D2429),
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 12),
+                    child: TextFormField(
+                      controller: emailAddressController2,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'Your email address...',
