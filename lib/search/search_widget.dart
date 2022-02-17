@@ -133,6 +133,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   void search() async {
     try {
       var url = endpoint + "/api/getproducts";
+      if (selected[0]['category'] == "") selected[0]['category'] = category;
       print(url);
       final response = await http.post(Uri.parse(url),
           headers: <String, String>{

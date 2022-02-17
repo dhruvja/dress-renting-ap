@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ecommerce/home_page/home_page_widget.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,17 +35,22 @@ class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system;
   bool displaySplashImage = true;
 
+  
+
   @override
   void initState() {
     super.initState();
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+
   }
+
 
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
+
 
   @override
   Widget build(BuildContext context) {

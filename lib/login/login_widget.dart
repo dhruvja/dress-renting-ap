@@ -1,8 +1,11 @@
+import 'package:ecommerce/home_page/home_page_widget.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../google_sign_in/google_sign_in.dart';
 import '../main.dart';
 import '../product_page/product_page_widget.dart';
 import '../signup/signup_widget.dart';
@@ -34,6 +37,12 @@ class _LoginWidgetState extends State<LoginWidget> {
     textController2 = TextEditingController();
   }
 
+  void googleSignIn() async {
+    var account = await GoogleSignInAPI.login();
+    print(account);
+    // GoogleSignIn().signIn();
+  }
+
   void login() async {
     try {
       var url = endpoint + "/api/token/";
@@ -51,12 +60,49 @@ class _LoginWidgetState extends State<LoginWidget> {
         var token = json.decode(response.body);
         final storage = await FlutterSecureStorage();
         await storage.write(key: 'token', value: token['access']);
+        await storage.write(key: 'username', value: textController1.text);
         print(token);
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NavBarPage(initialPage: 'HomePage'),
+          ),
+        );
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-              content: Text('Registered Successfully, Please Login'),
-              backgroundColor: Colors.green),
+              content: Text('Wrong username or password'),
+              backgroundColor: Colors.redAccent),
         );
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
+  }
+
+  void checkArray() async {
+    try {
+      var url = endpoint + "/api/createproductorder";
+      print(url);
+      final storage = await FlutterSecureStorage();
+      var CartString = await storage.read(key: 'cart');
+      List Cart = json.decode(CartString);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json'
+          },
+          body: jsonEncode({
+            "products": Cart,
+          }));
+      if (response.statusCode == 200) {
+        var token = json.decode(response.body);
+        print(token);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -329,7 +375,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     AlignmentDirectional(0, 0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
-                                                    login();
+                                                    // googleSignIn();
+                                                    checkArray();
                                                   },
                                                   text: 'Sign in',
                                                   icon: Icon(
