@@ -13,13 +13,13 @@ class ConfirmationPageWidget extends StatefulWidget {
 }
 
 class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
-  TextEditingController textController;
+  TextEditingController cartAddressController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    cartAddressController = TextEditingController();
   }
 
   @override
@@ -111,7 +111,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                           padding:
                               EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                           child: TextFormField(
-                            controller: textController,
+                            controller: cartAddressController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Address',
