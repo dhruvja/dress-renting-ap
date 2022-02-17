@@ -1,6 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import '../confirmation_page/confirmation_page_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -33,92 +34,6 @@ class _AddressWidgetState extends State<AddressWidget> {
 
   String endpoint = Endpoint();
 
-  var _razorpay = Razorpay();
-
-  void dispose() {
-    super.dispose();
-    _razorpay.clear(); // Removes all listeners
-  }
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    // Do something when payment succeeds
-    print("Payment success");
-    Fluttertoast.showToast(msg: "SUCCESS: ", timeInSecForIosWeb: 4);
-    verifyPayment(response);
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    // Do something when payment fails
-    print("Payment failure");
-    // try {
-    //   _razorpay.open(options);
-    // } catch (e) {
-    //   print(e);
-    // }
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    // Do something when an external wallet is selected
-    print("External wallet selected");
-  }
-
-  void verifyPayment(PaymentSuccessResponse response) async {
-    print(response.paymentId);
-    var paymentId = response.paymentId;
-    var orderId = response.orderId;
-    var signature = response.signature;
-    try {
-      var url = endpoint + "/api/verifypayment";
-      print(url);
-      final response = await http.post(Uri.parse(url),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'accept': 'application/json',
-          },
-          body: jsonEncode(<String, String>{
-            "razorpay_order_id": orderId,
-            "payment_id": paymentId,
-            "signature": signature
-          }));
-      if (response.statusCode == 200) {
-        print(response.body);
-        var text = json.decode(response.body);
-        if (text == "success")
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text('Payment verified successfully'),
-                backgroundColor: Colors.green),
-          );
-        else {
-          print(text);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text('Payment Error'),
-                backgroundColor: Colors.green),
-          );
-        }
-      } else {
-        print(response.body);
-      }
-    } catch (e) {
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('No Interent Found, try again'),
-            backgroundColor: Colors.redAccent),
-      );
-    }
-  }
-
-  var options = {
-    'key': 'rzp_test_uagI5ZMXppLwVL',
-    'amount': 20000, //in the smallest currency sub-unit.
-    'name': 'Acme Corp.',
-    'order_id': "order_IwxhHIbAQp0arE", // Generate order_id using Orders API
-    'description': 'Fine T-Shirt',
-    'timeout': 600, // in seconds
-    'prefill': {'contact': '8971954555', 'email': 'gaurav.kumar@example.com'}
-  };
 
   @override
   void initState() {
@@ -131,9 +46,6 @@ class _AddressWidgetState extends State<AddressWidget> {
     textController6 = TextEditingController();
     textController7 = TextEditingController();
     textController8 = TextEditingController();
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     getUsername();
   }
 
@@ -148,58 +60,65 @@ class _AddressWidgetState extends State<AddressWidget> {
 
   void uploadAddress() async {
     try {
-      _razorpay.open(options);
+      var url = endpoint + "/api/createaddress";
+      final storage = await FlutterSecureStorage();
+      String authToken = await storage.read(key: 'token');
+      authToken = "Bearer " + authToken;
+      print(authToken);
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json',
+            'Authorization': authToken
+          },
+          body: jsonEncode(<String, String>{
+            "name": textController1.text,
+            "phone": textController2.text,
+            "housename": textController3.text,
+            "streetname": textController4.text,
+            "area": textController5.text,
+            "city": textController6.text,
+            "state": textController7.text,
+            "pincode": textController8.text
+          }));
+      if (response.statusCode == 200) {
+        print(response.body);
+        var data = json.decode(response.body);
+        if(data['success']){
+          String address = textController3.text +
+                      ", " +
+                      textController4.text +
+                      ", " +
+                      textController5.text +
+                      ", " +
+                      textController6.text +
+                      ", " +
+                      textController7.text +
+                      ", " +
+                      textController8.text;
+                  // await storage.write(key: 'address', value: address);
+                  await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ConfirmationPageWidget(order_id: data['order_id'], address: data['address']),
+                )
+                  );
+        }
+      else{
+        print(data['error']);
+      }
+      } else {
+        print(response.body);
+      }
     } catch (e) {
       print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
     }
-    // try {
-    //   var url = endpoint + "/api/createaddress";
-    //   final storage = await FlutterSecureStorage();
-    //   String authToken = await storage.read(key: 'token');
-    //   authToken = "Bearer " + authToken;
-    //   print(authToken);
-    //   print(url);
-    //   final response = await http.post(Uri.parse(url),
-    //       headers: <String, String>{
-    //         'Content-Type': 'application/json; charset=UTF-8',
-    //         'accept': 'application/json',
-    //         'Authorization': authToken
-    //       },
-    //       body: jsonEncode(<String, String>{
-    //         "name": textController1.text,
-    //         "phone": textController2.text,
-    //         "housename": textController3.text,
-    //         "streetname": textController4.text,
-    //         "area": textController5.text,
-    //         "city": textController6.text,
-    //         "state": textController7.text,
-    //         "pincode": textController8.text
-    //       }));
-    //   if (response.statusCode == 200) {
-    //     print(response.body);
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(
-    //           content: Text('Registered Successfully, Please Login'),
-    //           backgroundColor: Colors.green),
-    //     );
-    //     _razorpay.open(options);
-    //     // await Navigator.push(
-    //     //   context,
-    //     //   MaterialPageRoute(
-    //     //     builder: (context) => LoginWidget(),
-    //     //   ),
-    //     // );
-    //   } else {
-    //     print(response.body);
-    //   }
-    // } catch (e) {
-    //   print(e);
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //         content: Text('No Interent Found, try again'),
-    //         backgroundColor: Colors.redAccent),
-    //   );
-    // }
   }
 
   @override

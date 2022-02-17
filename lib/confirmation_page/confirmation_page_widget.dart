@@ -1,12 +1,25 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+import '../api_endpoint.dart';
 import '../components/cart_component_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class ConfirmationPageWidget extends StatefulWidget {
-  const ConfirmationPageWidget({Key key}) : super(key: key);
+  final address;
+  final order_id;
+  const ConfirmationPageWidget(
+      {Key key, @required this.order_id, @required this.address})
+      : super(key: key);
 
   @override
   _ConfirmationPageWidgetState createState() => _ConfirmationPageWidgetState();
@@ -16,10 +29,213 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  var items;
+  bool present = false;
+  int sum;
+  var address;
+  var order_id;
+
+  var _razorpay = Razorpay();
+
+  String endpoint = Endpoint();
+
+  void dispose() {
+    super.dispose();
+    _razorpay.clear(); // Removes all listeners
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+    print("Payment success");
+    Fluttertoast.showToast(msg: "SUCCESS: ", timeInSecForIosWeb: 4);
+    verifyPayment(response);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    print("Payment failure");
+    // try {
+    //   _razorpay.open(options);
+    // } catch (e) {
+    //   print(e);
+    // }
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+    print("External wallet selected");
+  }
+
+  var options = {
+    'key': 'rzp_test_uagI5ZMXppLwVL',
+    'amount': 20000, //in the smallest currency sub-unit.
+    'name': 'Acme Corp.',
+    'order_id': "order_IwxhHIbAQp0arE", // Generate order_id using Orders API
+    'description': 'Fine T-Shirt',
+    'timeout': 600, // in seconds
+    'prefill': {'contact': '8971954555', 'email': 'gaurav.kumar@example.com'}
+  };
+
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    order_id = widget.order_id;
+    address = widget.address;
+    getCartItems();
+  }
+
+  void getCartItems() async {
+    final storage = await FlutterSecureStorage();
+    var StringItems = await storage.read(key: 'cart');
+    if (StringItems == null) {
+      print("No items");
+    } else {
+      var DecodedItems = json.decode(StringItems);
+      var tempSum = await storage.read(key: 'total');
+      setState(() {
+        items = DecodedItems;
+        sum = num.parse(tempSum);
+        present = true;
+        textController.text = address;
+      });
+    }
+  }
+
+  void doPayment() async {
+    try {
+      var url = endpoint + "/api/createorder";
+      print(url);
+      int x = sum * 100;
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json',
+          },
+          body: jsonEncode({"amount": x}));
+      if (response.statusCode == 200) {
+        print(response.body);
+        var text = json.decode(response.body);
+          print("Order created");
+          var order = json.decode(response.body);
+          var options = {
+            'key': 'rzp_test_uagI5ZMXppLwVL',
+            'amount': x, //in the smallest currency sub-unit.
+            'name': 'Ciante.',
+            'order_id': order['id'], // Generate order_id using Orders API
+            'description': 'Bundle',
+            'timeout': 600, // in seconds
+            'prefill': {'contact': '8971954555'}
+          };
+          try {
+            _razorpay.open(options);
+          } catch (e) {
+            print(e);
+          }
+      } else {
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
+  }
+
+  void verifyPayment(PaymentSuccessResponse response) async {
+    print(response.paymentId);
+    var paymentId = response.paymentId;
+    var orderId = response.orderId;
+    var signature = response.signature;
+    try {
+      var url = endpoint + "/api/verifypayment";
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json',
+          },
+          body: jsonEncode({
+            "razorpay_order_id": orderId,
+            "payment_id": paymentId,
+            "signature": signature,
+            "amount": sum * 100
+          }));
+      if (response.statusCode == 200) {
+        print(response.body);
+        var text = json.decode(response.body);
+        if (text == "success") {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text('Payment verified successfully'),
+                backgroundColor: Colors.green),
+          );
+          addCartItems();
+        } else {
+          print(text);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text('Payment Error'), backgroundColor: Colors.green),
+          );
+        }
+      } else {
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
+  }
+
+  void addCartItems() async {
+    try {
+      var url = endpoint + "/api/createproductorder/" + order_id.toString();
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json',
+          },
+          body: jsonEncode({
+            "cart": items,
+          }));
+      if (response.statusCode == 200) {
+        print(response.body);
+        var text = json.decode(response.body);
+        if (text['success']) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text('Items added successfully'),
+                backgroundColor: Colors.green),
+          );
+        } else {
+          print(text);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text('Payment Error'), backgroundColor: Colors.green),
+          );
+        }
+      } else {
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
   }
 
   @override
@@ -77,7 +293,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                           ),
                     ),
                     Text(
-                      'Rs.600',
+                      'Rs. ' + sum.toString(),
                       textAlign: TextAlign.end,
                       style: FlutterFlowTheme.of(context).subtitle2.override(
                             fontFamily: 'Lexend Deca',
@@ -97,7 +313,10 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // CartComponentWidget(),
+                    if (present)
+                      ...(items).map((item) {
+                        return CartComponentWidget(item);
+                      }),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                       child: Container(
@@ -201,7 +420,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    'Rs. ' + sum.toString(),
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -235,7 +454,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    '0%',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -269,7 +488,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    'Free',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle2
@@ -303,7 +522,7 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '[Order Total]',
+                                    'Rs. ' + sum.toString(),
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
@@ -332,9 +551,9 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                       child: FFButtonWidget(
                         onPressed: () {
-                          print('Button pressed ...');
+                          doPayment();
                         },
-                        text: 'Proceed to Checkout',
+                        text: 'Confirm Payment of Rs. ' + sum.toString(),
                         options: FFButtonOptions(
                           width: 320,
                           height: 60,

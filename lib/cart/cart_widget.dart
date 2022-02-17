@@ -37,6 +37,7 @@ class _CartWidgetState extends State<CartWidget> {
       var DecodedItems = json.decode(StringItems);
       int tempSum = 0;
       DecodedItems.forEach((singleItem) => {tempSum += singleItem['price']});
+      await storage.write(key: 'total', value: tempSum.toString());
       setState(() {
         items = DecodedItems;
         sum = tempSum;
@@ -121,10 +122,10 @@ class _CartWidgetState extends State<CartWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if(present)
-                      ...(items).map((item) {
-                        return CartComponentWidget(item);
-                      }),
+                      if (present)
+                        ...(items).map((item) {
+                          return CartComponentWidget(item);
+                        }),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
@@ -165,8 +166,8 @@ class _CartWidgetState extends State<CartWidget> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 0, 16, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -199,8 +200,8 @@ class _CartWidgetState extends State<CartWidget> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 0, 16, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -233,8 +234,8 @@ class _CartWidgetState extends State<CartWidget> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 0, 16, 12),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -316,7 +317,8 @@ class _CartWidgetState extends State<CartWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.asset(
@@ -340,13 +342,11 @@ class _CartWidgetState extends State<CartWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                         await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                AddressWidget()
-                                          ),
-                                        );
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddressWidget()),
+                          );
                         },
                         text: 'Proceed to Checkout',
                         options: FFButtonOptions(
