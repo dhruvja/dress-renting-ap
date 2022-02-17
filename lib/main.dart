@@ -7,6 +7,7 @@ import 'flutter_flow/internationalization.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page/home_page_widget.dart';
 import 'cart/cart_widget.dart';
+import 'confirmation_page/confirmation_page_widget.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 void main() async {
@@ -98,6 +99,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'cart': CartWidget(),
+      'confirmation_page': ConfirmationPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -122,6 +124,18 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.shopping_cart,
+              size: 24,
+            ),
+            label: 'Cart',
             tooltip: '',
           ),
           BottomNavigationBarItem(
