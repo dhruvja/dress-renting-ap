@@ -38,7 +38,7 @@ class _AddressWidgetState extends State<AddressWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFEEEEEE),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -82,7 +82,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                               'Address details',
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF090F13),
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
@@ -130,6 +130,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                   EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
                                     width: 70,
@@ -154,7 +155,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             fontSize: 10,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -183,7 +184,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             fontSize: 10,
                                           ),
                                     ),
@@ -211,7 +212,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             fontSize: 10,
                                             fontWeight: FontWeight.w200,
                                           ),
@@ -223,22 +224,28 @@ class _AddressWidgetState extends State<AddressWidget> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFEEEEEE),
-                                ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height * 0.05,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 0, 15, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Customer Details',
@@ -249,61 +256,65 @@ class _AddressWidgetState extends State<AddressWidget> {
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.9,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFF7F7F7),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 1,
-                                      color: Color(0xFF6C6B6B),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 5, 5, 5),
-                                  child: TextFormField(
-                                    controller: textController1,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: 'Name',
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 50,
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height * 0.08,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 0,
+                                    color: Color(0xFFAEE1E1),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                                child: TextFormField(
+                                  controller: textController1,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Name',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              10, 0, 0, 0),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 0, 0),
                                   ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                      ),
                                 ),
                               ),
                             ),
@@ -314,6 +325,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
@@ -321,12 +333,16 @@ class _AddressWidgetState extends State<AddressWidget> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.9,
                                 height: 50,
+                                constraints: BoxConstraints(
+                                  maxHeight:
+                                      MediaQuery.of(context).size.height * 0.08,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF7F7F7),
+                                  color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 1,
-                                      color: Color(0xFF6C6B6B),
+                                      blurRadius: 0,
+                                      color: Color(0xFFAEE1E1),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(5),
@@ -359,8 +375,11 @@ class _AddressWidgetState extends State<AddressWidget> {
                                           EdgeInsetsDirectional.fromSTEB(
                                               10, 0, 0, 0),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                        ),
                                   ),
                                 ),
                               ),
@@ -368,56 +387,52 @@ class _AddressWidgetState extends State<AddressWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                            ),
+                            child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 5, 5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFEEEEEE),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 0, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Address',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ],
+                                  EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Address',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
-                                ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                height: 50,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF7F7F7),
+                                  color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 1,
-                                      color: Color(0xFF6C6B6B),
+                                      blurRadius: 0,
+                                      color: Color(0xFFAEE1E1),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(5),
@@ -450,8 +465,11 @@ class _AddressWidgetState extends State<AddressWidget> {
                                           EdgeInsetsDirectional.fromSTEB(
                                               10, 0, 0, 0),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                        ),
                                   ),
                                 ),
                               ),
@@ -463,19 +481,21 @@ class _AddressWidgetState extends State<AddressWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                height: 50,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF7F7F7),
+                                  color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 1,
-                                      color: Color(0xFF6C6B6B),
+                                      blurRadius: 0,
+                                      color: Color(0xFFAEE1E1),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(5),
@@ -508,8 +528,11 @@ class _AddressWidgetState extends State<AddressWidget> {
                                           EdgeInsetsDirectional.fromSTEB(
                                               10, 0, 0, 0),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                        ),
                                   ),
                                 ),
                               ),
@@ -521,19 +544,21 @@ class _AddressWidgetState extends State<AddressWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                height: 50,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF7F7F7),
+                                  color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 1,
-                                      color: Color(0xFF6C6B6B),
+                                      blurRadius: 0,
+                                      color: Color(0xFFAEE1E1),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(5),
@@ -566,8 +591,11 @@ class _AddressWidgetState extends State<AddressWidget> {
                                           EdgeInsetsDirectional.fromSTEB(
                                               10, 0, 0, 0),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                        ),
                                   ),
                                 ),
                               ),
@@ -576,16 +604,18 @@ class _AddressWidgetState extends State<AddressWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.5,
-                                height: 50,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFEEEEEE),
                                 ),
@@ -619,7 +649,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       ),
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              10, 10, 10, 10),
+                                              13, 13, 13, 13),
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
@@ -632,7 +662,8 @@ class _AddressWidgetState extends State<AddressWidget> {
                                   EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                height: 50,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFEEEEEE),
                                 ),
@@ -666,7 +697,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       ),
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              10, 10, 10, 10),
+                                              13, 13, 13, 13),
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
@@ -682,44 +713,40 @@ class _AddressWidgetState extends State<AddressWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FFButtonWidget(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                        text: 'Proceed',
-                        options: FFButtonOptions(
-                          width: 350,
-                          height: 50,
-                          color: Colors.red,
-                          textStyle:
-                              FlutterFlowTheme.of(context).title1.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    lineHeight: 1,
-                                  ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 1,
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    FFButtonWidget(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                      text: 'Proceed',
+                      options: FFButtonOptions(
+                        width: 350,
+                        height: 50,
+                        color: Colors.red,
+                        textStyle: FlutterFlowTheme.of(context).title1.override(
+                              fontFamily: 'Open Sans',
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              lineHeight: 1,
+                            ),
+                        elevation: 0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
                         ),
+                        borderRadius: 1,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

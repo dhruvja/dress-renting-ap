@@ -15,15 +15,7 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  TextEditingController textController;
-  bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    textController = TextEditingController();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -518,133 +510,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                             color: Color(0xFFDBE2E7),
                           ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                                child: Card(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Colors.white,
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 8, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4, 0, 4, 0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SearchWidget(),
-                                                ),
-                                              );
-                                            },
-                                            child: Icon(
-                                              Icons.search_rounded,
-                                              color: Color(0xFF95A1AC),
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 10,
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4, 0, 0, 0),
-                                            child: TextFormField(
-                                              controller: textController,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                labelText:
-                                                    'Search for friends...',
-                                                labelStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF82878C),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                                hintText:
-                                                    'Find your friend by na',
-                                                hintStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF95A1AC),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x004B39EF),
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x004B39EF),
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF151B1E),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                              textAlign: TextAlign.start,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -689,31 +554,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                           ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SwitchListTile(
-                                      value: switchListTileValue ??= true,
-                                      onChanged: (newValue) => setState(
-                                          () => switchListTileValue = newValue),
-                                      title: Text(
-                                        'Male',
-                                        style: FlutterFlowTheme.of(context)
-                                            .title3
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold,
-                                              lineHeight: 0,
-                                            ),
-                                      ),
-                                      tileColor: Color(0xFFF5F5F5),
-                                      dense: false,
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              130, 0, 0, 0),
                                     ),
                                   ),
                                   Padding(

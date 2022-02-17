@@ -39,7 +39,7 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
                       image: DecorationImage(
                         fit: BoxFit.fitWidth,
                         image: Image.asset(
-                          'assets/images/RAAZDA.png',
+                          'assets/images/ciante2_.png',
                         ).image,
                       ),
                     ),

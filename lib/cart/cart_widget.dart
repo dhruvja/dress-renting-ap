@@ -277,33 +277,6 @@ class _CartWidgetState extends State<CartWidget> {
                       endIndent: 16,
                       color: Colors.transparent,
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              'assets/images/applePay.png',
-                              width: 160,
-                              height: 44,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            'assets/images/payPal.png',
-                            width: 160,
-                            height: 44,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                       child: FFButtonWidget(
@@ -314,7 +287,7 @@ class _CartWidgetState extends State<CartWidget> {
                         options: FFButtonOptions(
                           width: 320,
                           height: 60,
-                          color: Color(0xFF03CE9F),
+                          color: Color(0xFF21149C),
                           textStyle:
                               FlutterFlowTheme.of(context).subtitle2.override(
                                     fontFamily: 'Lexend Deca',

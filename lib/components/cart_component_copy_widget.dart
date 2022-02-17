@@ -56,7 +56,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                           'Order Number',
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
+                                    fontFamily: 'Open Sans',
                                     color: Color(0xFF090F13),
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -70,7 +70,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                             'Date',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
                                       color: Color(0xFF6C6B6B),
                                       fontSize: 8,
                                     ),
@@ -97,7 +97,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Open Sans',
                                             color: Color(0xFF151B1E),
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
@@ -121,7 +121,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Open Sans',
                                             color: Color(0xFF151B1E),
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
@@ -170,7 +170,11 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                                       ),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                      ),
                                   maxLines: 3,
                                 ),
                               ),

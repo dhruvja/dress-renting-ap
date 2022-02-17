@@ -99,7 +99,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             fontSize: 12,
                                           ),
                                     ),
@@ -152,7 +152,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
-                                                fontFamily: 'Poppins',
+                                                fontFamily: 'Open Sans',
                                                 fontSize: 12,
                                               ),
                                         ),
@@ -205,7 +205,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
-                                              fontFamily: 'Poppins',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 12,
                                             ),
                                       ),
@@ -257,7 +257,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
-                                              fontFamily: 'Poppins',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 10,
                                             ),
                                       ),
@@ -309,7 +309,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
-                                              fontFamily: 'Poppins',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 12,
                                             ),
                                       ),
@@ -356,7 +356,11 @@ class _FilterWidgetState extends State<FilterWidget> {
                               },
                               child: Text(
                                 'Levis',
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                    ),
                               ),
                             ),
                             Image.asset(

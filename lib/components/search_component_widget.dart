@@ -16,18 +16,18 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+          padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                     onTap: () async {
@@ -39,7 +39,7 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                       );
                     },
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.45,
+                      width: MediaQuery.of(context).size.width * 0.42,
                       height: 160,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -62,52 +62,71 @@ class _SearchComponentWidgetState extends State<SearchComponentWidget> {
                 ],
               ),
               Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NavBarPage(initialPage: 'cart'),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        NavBarPage(initialPage: 'cart'),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Pressman Top',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                    child: Text(
-                      'Pressman Top',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '300 Rs',
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Open Sans',
+                              color: Color(0xFFDA1111),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),
               Text(
                 'Cost per day',
                 style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Open Sans',
                       color: Color(0xFF6C6B6B),
                       fontSize: 8,
                     ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '300 Rs',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFFDA1111),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                ],
               ),
             ],
           ),

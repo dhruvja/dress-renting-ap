@@ -14,7 +14,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 3),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.95,
         height: 100,
@@ -23,7 +23,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
           boxShadow: [
             BoxShadow(
               blurRadius: 1,
-              color: Color(0xFF6C6B6B),
+              color: Color(0xFFAEE1E1),
             )
           ],
           borderRadius: BorderRadius.circular(10),
@@ -62,7 +62,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                       Text(
                         'Pressed T-Shirt',
                         style: FlutterFlowTheme.of(context).subtitle1.override(
-                              fontFamily: 'Lexend Deca',
+                              fontFamily: 'Open Sans',
                               color: Color(0xFF111417),
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -74,7 +74,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                           'Size:XXL',
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
+                                    fontFamily: 'Open Sans',
                                     color: Color(0xFF090F13),
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -88,7 +88,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                             'No of Days',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
                                       color: Color(0xFF6C6B6B),
                                       fontSize: 8,
                                     ),
@@ -115,7 +115,7 @@ class _CartComponentWidgetState extends State<CartComponentWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Open Sans',
                                             color: Color(0xFF151B1E),
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
