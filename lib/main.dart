@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'home_page/home_page_widget.dart';
 import 'cart/cart_widget.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'orde_booked/orde_booked_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -106,6 +107,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'cart': CartWidget(),
+      'order': OrdeBookedWidget()
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -142,6 +144,18 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Cart',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.shopping_cart,
+              size: 24,
+            ),
+            label: 'Order',
             tooltip: '',
           )
         ],

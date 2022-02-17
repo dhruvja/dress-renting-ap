@@ -36,10 +36,82 @@ class _LoginWidgetState extends State<LoginWidget> {
     textController2 = TextEditingController();
   }
 
+  void googleSignInWithServer(var account) async {
+    try {
+      var url = endpoint + "/api/token/";
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json'
+          },
+          body: jsonEncode(<String, String>{
+            "username": account.id,
+            "password": account.id
+          }));
+      if (response.statusCode == 200) {
+        var token = json.decode(response.body);
+        final storage = await FlutterSecureStorage();
+        await storage.write(key: 'token', value: token['access']);
+        await storage.write(key: 'google', value: "true");
+        await storage.write(key: 'username', value: account.displayName);
+        print(token);
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NavBarPage(initialPage: 'HomePage'),
+          ),
+        );
+      } else {
+        createUser(account);
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
+  }
+
   void googleSignIn() async {
     var account = await GoogleSignInAPI.login();
     print(account);
-    // GoogleSignIn().signIn();
+    googleSignInWithServer(account);
+  }
+
+  void createUser(var account) async {
+    try {
+      var url = endpoint + "/api/createuser";
+      print(url);
+      final response = await http.post(Uri.parse(url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'accept': 'application/json'
+          },
+          body: jsonEncode(<String, String>{
+            "username": account.id,
+            "password": account.id,
+            "email": account.email
+          }));
+      if (response.statusCode == 200) {
+        googleSignInWithServer(account);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Wrong username or password'),
+              backgroundColor: Colors.redAccent),
+        );
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No Interent Found, try again'),
+            backgroundColor: Colors.redAccent),
+      );
+    }
   }
 
   void login() async {
@@ -60,6 +132,7 @@ class _LoginWidgetState extends State<LoginWidget> {
         final storage = await FlutterSecureStorage();
         await storage.write(key: 'token', value: token['access']);
         await storage.write(key: 'username', value: textController1.text);
+        await storage.write(key: 'google', value: "false");
         print(token);
         await Navigator.push(
           context,
@@ -67,41 +140,6 @@ class _LoginWidgetState extends State<LoginWidget> {
             builder: (context) => NavBarPage(initialPage: 'HomePage'),
           ),
         );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text('Wrong username or password'),
-              backgroundColor: Colors.redAccent),
-        );
-      }
-    } catch (e) {
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('No Interent Found, try again'),
-            backgroundColor: Colors.redAccent),
-      );
-    }
-  }
-
-  void checkArray() async {
-    try {
-      var url = endpoint + "/api/createproductorder";
-      print(url);
-      final storage = await FlutterSecureStorage();
-      var CartString = await storage.read(key: 'cart');
-      List Cart = json.decode(CartString);
-      final response = await http.post(Uri.parse(url),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'accept': 'application/json'
-          },
-          body: jsonEncode({
-            "products": Cart,
-          }));
-      if (response.statusCode == 200) {
-        var token = json.decode(response.body);
-        print(token);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -374,14 +412,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NavBarPage(
-                                                        initialPage: 'cart'),
-                                              ),
-                                            );
+                                            googleSignIn();
                                           },
                                           child: Container(
                                             width: 40,

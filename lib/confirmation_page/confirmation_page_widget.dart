@@ -14,6 +14,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
+import '../orde_booked/orde_booked_widget.dart';
+
 class ConfirmationPageWidget extends StatefulWidget {
   final address;
   final order_id;
@@ -218,6 +220,12 @@ class _ConfirmationPageWidgetState extends State<ConfirmationPageWidget> {
                 content: Text('Items added successfully'),
                 backgroundColor: Colors.green),
           );
+          await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OrdeBookedWidget(),
+          ),
+        );
         } else {
           print(text);
           ScaffoldMessenger.of(context).showSnackBar(
