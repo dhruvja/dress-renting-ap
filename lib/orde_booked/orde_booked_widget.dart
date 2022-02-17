@@ -1,17 +1,17 @@
-import '../components/liked_widget.dart';
+import '../components/cart_component_copy_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LikedWidget extends StatefulWidget {
-  const LikedWidget({Key key}) : super(key: key);
+class OrdeBookedWidget extends StatefulWidget {
+  const OrdeBookedWidget({Key key}) : super(key: key);
 
   @override
-  _LikedWidgetState createState() => _LikedWidgetState();
+  _OrdeBookedWidgetState createState() => _OrdeBookedWidgetState();
 }
 
-class _LikedWidgetState extends State<LikedWidget> {
+class _OrdeBookedWidgetState extends State<OrdeBookedWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -25,7 +25,7 @@ class _LikedWidgetState extends State<LikedWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -38,24 +38,13 @@ class _LikedWidgetState extends State<LikedWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(5, 3, 0, 0),
                     child: Text(
-                      'Liked',
+                      'Booked',
                       style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: LikedWidget(),
-                    ),
-                  ],
-                ),
-              ),
+              CartComponentCopyWidget(),
             ],
           ),
         ),
