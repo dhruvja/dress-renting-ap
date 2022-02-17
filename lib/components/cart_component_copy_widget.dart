@@ -26,7 +26,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 3),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.95,
-        height: 130,
+        height: 150,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -171,6 +171,7 @@ class _CartComponentCopyWidgetState extends State<CartComponentCopyWidget> {
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
+                                  maxLines: 3,
                                 ),
                               ),
                             ),
