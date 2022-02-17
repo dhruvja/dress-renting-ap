@@ -20,7 +20,7 @@ class _OrdeBookedWidgetState extends State<OrdeBookedWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         actions: [],
         centerTitle: true,
         elevation: 4,
