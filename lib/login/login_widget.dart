@@ -2,7 +2,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
-import '../product_page/product_page_widget.dart';
 import '../signup/signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +47,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           width: 0,
                           height: 0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFEEEEEE),
+                            color: Color(0xFFAEE1E1),
                           ),
                         ),
                       ),
@@ -59,7 +58,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         width: double.infinity,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: Color(0xFFEEEEEE),
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: SingleChildScrollView(
@@ -247,6 +246,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 5, 0, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SignupWidget(),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          'or',
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF21149C),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -262,64 +285,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                          width: 100,
-                                          height: 38,
-                                          child: Stack(
-                                            children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -0.7, -0.01),
-                                                child: Container(
-                                                  width: 18,
-                                                  height: 18,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: Image.network(
-                                                    'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment:
-                                                    AlignmentDirectional(0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ProductPageWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                  text: 'Sign in',
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    color: Colors.transparent,
-                                                    size: 20,
-                                                  ),
-                                                  options: FFButtonOptions(
-                                                    width: 100,
-                                                    height: 38,
-                                                    color: Colors.transparent,
-                                                    textStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color: Color(0xFF616161),
-                                                      fontSize: 14,
-                                                    ),
-                                                    borderSide: BorderSide(
-                                                      color: Color(0xFFAAAAAA),
-                                                      width: 0.5,
-                                                    ),
-                                                    borderRadius: 0,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.asset(
+                                                'assets/images/Google.png',
+                                              ).image,
+                                            ),
+                                            shape: BoxShape.circle,
                                           ),
                                         ),
                                       ],
